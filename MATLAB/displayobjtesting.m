@@ -1,26 +1,26 @@
 function displayobjtesting(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
-% the sensor and reshapes them in a 3 dimensions vector. 
+% the sensor and reshapes them in a 3 dimensions vector.
 global fullimage lock w h s
 
-% THIS IS COMMENT OR SOMETHING
+% hello
 
 %Arduino testing code
 % write(s,1,"uint8");
 % %fprintf(s,'%i\n',1); %writeDigitalPin(a, 'D5', 1); %turn on red
 % hbytes=uint8(inbytes.GetImageData.GetRawPixels1Byte);
 % r = reshape(hbytes(), [w,h]);
-% 
+%
 % write(s,2,"uint8");
 % %fprintf(s,'%i\n',2);%writeDigitalPin(a, 'D7', 1); %turn on green
 % hbytes=uint8(inbytes.GetImageData.GetRawPixels1Byte);
 % g = reshape(hbytes(), [w,h]);
-% 
+%
 % write(s,3,"uint8");
 % %fprintf(s,'%i\n',3);%writeDigitalPin(a, 'D4', 1); %turn on blue
 % hbytes=uint8(inbytes.GetImageData.GetRawPixels1Byte);
 % b = reshape(hbytes(), [w,h]);
-% 
+%
 % %fprintf(s,'%i\n',4); %turn off all LEDs
 % write(s,4,"uint8");
 
@@ -73,17 +73,17 @@ if serialIn == 110 % "red" signal from FPGA, the serialIn will need to be made w
     Ron = uint8(inbytes.GetImageData.GetRawPixels2Byte);
     caliRedOn = %maybe need to do all this calculations at the end of calibration
     Roff = uint8(inbytes.GetImageData.GetRawPixels2Byte);
-    caliRedOff = 
+    caliRedOff =
 elseif serialIn == 101 % "green" signal
     Gon = uint8(inbytes.GetImageData.GetRawPixels2Byte);
-    caliGreenOn = 
+    caliGreenOn =
     Goff = uint8(inbytes.GetImageData.GetRawPixels2Byte);
-    caliGreenOff = 
+    caliGreenOff =
 elseif serialIn == 011 % "blue" signal
     Bon = uint8(inbytes.GetImageData.GetRawPixels2Byte);
-    caliBlueOn = 
+    caliBlueOn =
     Boff = uint8(inbytes.GetImageData.GetRawPixels2Byte);
-    caliBlueOff = 
+    caliBlueOff =
 end
 
 
@@ -118,7 +118,7 @@ if serialIn == 001 %signal for blue to red
     B = sum(ABC.*caliBlueOff,2);
         b = reshape(B(), [w,h]);
     img = cat(3, r,g,b); %take these three lines out at the end of the code, just call at the end of every if statement
-    set(handles.image,'CData',img); 
+    set(handles.image,'CData',img);
     fullimage=img;
 elseif serialIn == 010 %signal for red to green
     B = uint8(inbytes.GetImageData.GetRawPixels2Byte);
@@ -130,7 +130,7 @@ elseif serialIn == 010 %signal for red to green
     B = sum(ABC.*caliBlueZero,2);
         b = reshape(B(), [w,h]);
     img = cat(3, r,g,b); %take these three lines out at the end of the code, just call at the end of every if statement
-    set(handles.image,'CData',img); 
+    set(handles.image,'CData',img);
     fullimage=img;
 elseif serialIn == 100 %signal for green to blue
     C = uint8(inbytes.GetImageData.GetRawPixels2Byte);
@@ -142,7 +142,7 @@ elseif serialIn == 100 %signal for green to blue
     B = sum(ABC.*caliBlueOn,2);
         b = reshape(B(), [w,h]);
     img = cat(3, r,g,b); %take these three lines out at the end of the code, just call at the end of every if statement
-    set(handles.image,'CData',img); 
+    set(handles.image,'CData',img);
     fullimage=img;
 end
 
@@ -150,11 +150,11 @@ end
 % r = Ared + Bred; % assuming the other terms are zero
 % g = Bgreen + Cgreen;
 % b = Ablue + Cblue;
-% 
+%
 % imgh = cat(3, r,g,b);
-% %pause(0.01); 
-% 
-% set(handles.image,'CData',imgh); 
+% %pause(0.01);
+%
+% set(handles.image,'CData',imgh);
 % fullimage=imgh;
 
 if lock == 3
