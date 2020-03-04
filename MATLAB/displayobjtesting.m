@@ -3,6 +3,8 @@ function displayobjtesting(inbytes,handles)
 % the sensor and reshapes them in a 3 dimensions vector. 
 global fullimage lock w h s
 
+% hello
+
 %Arduino testing code
 % write(s,1,"uint8");
 % %fprintf(s,'%i\n',1); %writeDigitalPin(a, 'D5', 1); %turn on red
