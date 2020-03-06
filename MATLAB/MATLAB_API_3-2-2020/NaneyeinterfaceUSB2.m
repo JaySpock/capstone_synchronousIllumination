@@ -44,10 +44,20 @@ end
 % --- Executes just before NaneyeinterfaceUSB2 is made visible.
 function NaneyeinterfaceUSB2_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for NaneyeinterfaceUSB2
-global lock naneye1 w h colorlist BW Thl Tlh 
+global lock naneye1 w h colorlist BW Thl Tlh DataCaptureObj out
 
+out = [];
 clear global a; %clears the previous connection so a new updated Arduino connection can be established
 
+% This initializes MATLAB/FPGA datacapture
+hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18.1\quartus\bin64\quartus.exe');
+% DataCaptureObj = datacapture;
+% DataCaptureObj.TriggerPosition = 0;
+% DataCaptureObj.NumCaptureWindows = 1;  
+% setRunImmediateFlag(DataCaptureObj,'1')
+% NumberOfSampledepth = 1;
+% Sample_depth = 128;
+% data_out =  int16(zeros(NumberOfSampledepth*Sample_depth, 1));
 
 % The 'lock' variable is used to control if a histogram is to be displayed.
 % 'lock = -1' ensures that no histogram was requested and 'lock = 3' enables the displaying of the histogram. 
@@ -71,6 +81,16 @@ NET.addAssembly([pwd '\AwFrameProcessing.dll']);
 % Update handles structure
 guidata(hObject, handles);
 disp('....Application Starting')
+
+%Initialized data capture
+DataCaptureObj = datacapture;
+DataCaptureObj.TriggerPosition = 0;
+DataCaptureObj.NumCaptureWindows = 1;  
+% setRunImmediateFlag(DataCaptureObj,'1')
+% setTriggerCondition(DataCaptureObj,'New_Frame',true,'rising edge'); % data_out signal is the end of frame detection
+NumberOfSampledepth = 1;
+Sample_depth = 128;
+data_out =  int16(zeros(NumberOfSampledepth*Sample_depth, 1));
 
 % Setting the sensor according to the NanEye Provider Demo, and setting the
 % .mat file that corresponds to the register setting to present on the
@@ -183,7 +203,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running a s
+global naneye1 keep_running a s 
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -194,17 +214,16 @@ while keep_running
         
        case 'Start'
             %a = arduino; %sets up connection to Arduino on start
-            s = serialport("COM3", 9600);
+%             s = serialport("COM3", 9600);
             %s = serial('COM3','BaudRate',9600);
             %fopen(s);
             axes(handles.axes1);
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjtesting(e,handles));
+            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobj(e,handles));
             naneye1.StartCapture();
             choice=set(handles.startbuttom,'string','Stop');
             keep_running = false;
-        
         case 'Stop'
             %fclose(s);
             clear global s; %ends connection to Arduino on stop

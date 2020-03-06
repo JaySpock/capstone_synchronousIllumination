@@ -13,9 +13,11 @@ entity project is
 
             KEY    			: in std_logic;										-- Startup switch
 				
+				Button			: in std_logic_vector(2 downto 0);				-- Calibration buttons 
+				
 				DATA 	 			: in std_logic;										-- Current bit from Camera
 				
-				DATA_OUT 		: out std_logic;										-- Rising edge indicates EOF
+				END_OF_FRAME	: out std_logic;										-- Rising edge indicates EOF
 				
 				LED_OUT			: out std_logic_vector(2 downto 0);				-- LED output for the pins--
 				
@@ -55,19 +57,21 @@ architecture blink_arch of project is
 	signal startup_frame	: INTEGER RANGE 0 to 9 := 4;
 	
 	signal cal_cnt			: INTEGER RANGE 0 to 2;
+	
+	signal DATA_OUT		: std_logic_vector(4 downto 0) := "00000";
 
 	begin 
 	
 		u0: datacapture
 			port map(clk=>clk,
 						clk_enable=>'1',
-						Data_out=>(Calibration & NEW_FRAME & LED_output),
+						Data_out=>DATA_OUT,
 						Calibration=>Calibration,
 						New_Frame=>NEW_FRAME);
 						
-		DATA_OUT <= NEW_FRAME;
+		END_OF_FRAME <= NEW_FRAME;
 
-		LED<= LED_output; 
+		LED <= LED_output; 
 		
 		LED_out <= LED_output;
 		
@@ -94,15 +98,22 @@ architecture blink_arch of project is
 						FIFO_reg(address) <= FIFO_reg(address - 1);
 							
 					end loop;
-				
---						
+							
 					FIFO_reg(0) <= DATA;
-					
---					FIFO_reg <= FIFO_reg(126 downto 0) & DATA;
 					
 					if(KEY = '0') then
 							startup_frame <= 0;
 					end if;
+					
+					if(Button = "110") then
+						startup_frame <= 1;
+					elsif (Button = "101") then
+						startup_frame <= 2;
+					elsif (Button = "011") then
+						startup_frame <= 3;
+					end if;
+
+				
 --					
 					if (FIFO_reg = "00000000000000000000000000000000000000000000000000000000000000" and DATA_BUFFER = '0') then
 					
@@ -116,6 +127,7 @@ architecture blink_arch of project is
 							when 0	=> 
 								Calibration <= '1';
 								LED_output <= "111";						--NO LIGHT startup frame
+								DATA_OUT <= "00000";
 								if(cal_cnt = 2) then
 									startup_frame <= 1;
 									cal_cnt <= 0;
@@ -127,79 +139,77 @@ architecture blink_arch of project is
 --								LED_output <= "110";						--RED startup frame
 								if(cal_cnt = 1) then
 									LED_output <= "111";
-									cal_cnt <= cal_cnt + 1;	
+									cal_cnt <= cal_cnt + 1;
+									DATA_OUT <= "00010";
 								elsif(cal_cnt = 0) then
 									LED_output <= "110";
 									cal_cnt <= cal_cnt + 1;	
+									DATA_OUT <= "00001";
 								else
 									LED_output <= "111";	
 									startup_frame <= 2;
-									cal_cnt <= 0;	
+									cal_cnt <= 0;
+									DATA_OUT <= "00010";	
 								end if;
 	
-							when 2	=>
+							when 2	=>									--GREEN startup frame
 								if(cal_cnt = 1) then
 									LED_output <= "111";
-									cal_cnt <= cal_cnt + 1;	
+									cal_cnt <= cal_cnt + 1;
+									DATA_OUT <= "00100";	
 								elsif(cal_cnt = 0) then
 									LED_output <= "101";
-									cal_cnt <= cal_cnt + 1;	
+									cal_cnt <= cal_cnt + 1;
+									DATA_OUT <= "00011";	
 								else
 									LED_output <= "111";	
 									startup_frame <= 3;
-									cal_cnt <= 0;	
+									cal_cnt <= 0;
+									DATA_OUT <= "00100";
 								end if;
-	
-							
---								LED_output <= "011";						--GREEN startup frame?
---								if(cal_cnt = 2) then
---									startup_frame <= 3;
---									cal_cnt <= 0;
---								else
---									cal_cnt <= cal_cnt + 1;
---								end if;
 								
 							when 3 	=>
-								if(cal_cnt = 1) then
+								if(cal_cnt = 1) then					--BLUE startup frame
 									LED_output <= "111";
 									cal_cnt <= cal_cnt + 1;	
+									DATA_OUT <= "00110";
 								elsif(cal_cnt = 0) then
 									LED_output <= "011";
-									cal_cnt <= cal_cnt + 1;	
+									cal_cnt <= cal_cnt + 1;
+									DATA_OUT <= "00101";
 								else
 									LED_output <= "111";	
 									startup_frame <= 4;
-									cal_cnt <= 0;	
+									cal_cnt <= 0;
+									DATA_OUT <= "00110";	
 								end if;
 								
---								LED_output <= "101";						--BLUE startup frame?
---								if(cal_cnt = 2) then
---									startup_frame <= 4;
---									cal_cnt <= 0;
---								else
---									cal_cnt <= cal_cnt + 1;
---								end if;
---								
+							
 							when others =>
 								Calibration <= '0';
 								case LED_output is
 									when "110" =>
 										LED_output <= "101";
+										DATA_OUT <= "01000";
 									when "101" =>
 										LED_output <= "011";
+										DATA_OUT <= "01001";
 									when "011" =>
-										LED_output <= "110";	
+										LED_output <= "110";
+										DATA_OUT <= "00111";
 									when "111" =>
-										LED_output <= "110";	
+										LED_output <= "110";
+										DATA_OUT <= "00111";	
 									when others =>
 										LED_output <= "111";
+										DATA_OUT <= "01010";
 --								LED_BUFFER    <= LED_output(2);
 --								LED_output(2) <= LED_output(1);
 --								LED_output(1) <= LED_output(0);
 --								LED_output(0) <= LED_BUFFER;
 								end case;						
 						end case;
-					elsif (DATA_BUFFER = '1' and cnt >25000) then
+					elsif (DATA_BUFFER = '1' and cnt >250000) then
 					
 						NEW_FRAME <= '0';
 						DATA_BUFFER <= '0';
