@@ -18,7 +18,7 @@ hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18
                                  
 %   setRunImmediateFlag(DataCaptureObj,'1')
 %   setTriggerCondition(DataCaptureObj,'LED',true,5)
-  setTriggerCondition(DataCaptureObj,'New_Frame',true,'rising edge'); % data_out signal is the end of frame detection
+  setTriggerCondition(DataCaptureObj,'New_Frame',true,'falling edge'); % data_out signal is the end of frame detection
   
 
   
@@ -74,5 +74,29 @@ hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18
 %   end
 
 %%
-
-plot(data_out);
+i = 0;
+data_last = 9;
+while 1
+    evalc('data_out(1:128) = step(DataCaptureObj)');
+    if (data_out(1) == 7 && data_last == 9)
+        data_last = 7;
+%         imwrite(imgh,'redimage.jpeg');
+%         toc
+%         disp('red');
+    elseif (data_out(1) == 8 && data_last == 7)
+        data_last = 8;
+%         toc
+%         imwrite(imgh,'greenimage.jpeg');
+%         disp('green');
+    elseif (data_out(1) == 9 && data_last == 8)
+%         imwrite(imgh,'blueimage.jpeg');
+        data_last = 9;
+%         toc
+%         disp('blue');
+    else 
+        disp('missed frame');
+        disp(i);
+    end;
+%     disp(i);
+    i = i+1;
+end;

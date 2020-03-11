@@ -87,7 +87,7 @@ DataCaptureObj = datacapture;
 DataCaptureObj.TriggerPosition = 0;
 DataCaptureObj.NumCaptureWindows = 1;  
 % setRunImmediateFlag(DataCaptureObj,'1')
-% setTriggerCondition(DataCaptureObj,'New_Frame',true,'rising edge'); % data_out signal is the end of frame detection
+setTriggerCondition(DataCaptureObj,'New_Frame',true,'rising edge'); % data_out signal is the end of frame detection
 NumberOfSampledepth = 1;
 Sample_depth = 128;
 data_out =  int16(zeros(NumberOfSampledepth*Sample_depth, 1));
@@ -203,7 +203,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running a s 
+global naneye1 keep_running a s DataCaptureObj data_last data_out i t
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -217,13 +217,24 @@ while keep_running
 %             s = serialport("COM3", 9600);
             %s = serial('COM3','BaudRate',9600);
             %fopen(s);
+            
+            i = 0;
+%             tic;
             axes(handles.axes1);
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobj(e,handles));
+            
             naneye1.StartCapture();
             choice=set(handles.startbuttom,'string','Stop');
             keep_running = false;
+            
+            data_last = 9;
+            
+            setTriggerCondition(DataCaptureObj,'New_Frame',true,'high');
+%             setRunImmediateFlag(DataCaptureObj,'1')
+            %   setRunImmediateFlag(DataCaptureObj,'1');
+            data_out =  int16(zeros(128, 1));
+            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjdatacapture(e,handles));
         case 'Stop'
             %fclose(s);
             clear global s; %ends connection to Arduino on stop

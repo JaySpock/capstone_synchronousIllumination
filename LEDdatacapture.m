@@ -18,7 +18,7 @@ hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18
                                  
 %   setRunImmediateFlag(DataCaptureObj,'1')
 %   setTriggerCondition(DataCaptureObj,'LED',true,5)
-  setTriggerCondition(DataCaptureObj,'data_out',true,'both edges') % data_out signal is the end of frame detection
+  setTriggerCondition(DataCaptureObj,'New_Frame',true,'rising edge') % data_out signal is the end of frame detection
   
 
   tic
@@ -34,15 +34,29 @@ hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18
 %% One frame color data capture
   DataCaptureObj.NumCaptureWindows = 1;
 
+  data_last = 0;
+  
   NumberOfSampledepth = 1;
   Sample_depth = 128;
-%   setRunImmediateFlag(DataCaptureObj,'1')
+  setTriggerCondition(DataCaptureObj,'New_Frame',true,'High');
+%   setRunImmediateFlag(DataCaptureObj,'1');
   data_out =  int16(zeros(NumberOfSampledepth*Sample_depth, 1));
-  tic
-  data_out(Sample_depth-(Sample_depth-1) :Sample_depth) = step(DataCaptureObj);
-  toc
-  data_out = de2bi(data_out);
-  
+  while 1
+%       toc
+      evalc('data_out(Sample_depth-(Sample_depth-1) :Sample_depth) = step(DataCaptureObj)');
+%       data_out = de2bi(data_out);
+      if (data_out(1) == 7 && data_last ~= 7)
+          data_last = 7;
+          disp('red');
+      elseif (data_out(1) == 8 && data_last ~= 8)
+          data_last = 8;
+          disp('green');
+      elseif (data_out(1) == 9 && data_last ~= 9)
+          data_last = 9;
+          disp('blue');
+      end;
+%       tic
+  end;
   %% Visualize
   figure(1)
   hold on
