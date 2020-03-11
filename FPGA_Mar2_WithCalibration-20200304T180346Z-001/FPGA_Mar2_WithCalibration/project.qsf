@@ -43,8 +43,13 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:29:55  MARCH 04, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_instance_assignment -name IO_STANDARD "2.5 V" -to KEY
+<<<<<<< HEAD
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED_OUT[0]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED_OUT[2]
+=======
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_OUT[0]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_OUT[2]
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -69,6 +74,7 @@ set_location_assignment PIN_L14 -to LED[0]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED[0]
 set_location_assignment PIN_P1 -to "DATA(n)"
 set_instance_assignment -name IO_STANDARD LVDS -to "DATA(n)"
+<<<<<<< HEAD
 set_location_assignment PIN_R16 -to LED_DATA_OUT[1]
 set_instance_assignment -name IO_STANDARD "1.5 V" -to LED_DATA_OUT[1]
 set_location_assignment PIN_K16 -to LED_DATA_OUT[2]
@@ -91,4 +97,11 @@ set_global_assignment -name VHDL_FILE hdlverifier_capture_comparator.vhd
 set_global_assignment -name VHDL_FILE datacapture.vhd
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+=======
+set_location_assignment PIN_R16 -to LED_OUT[2]
+set_location_assignment PIN_K16 -to LED_OUT[1]
+set_location_assignment PIN_L16 -to LED_OUT[0]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_OUT[1]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_OUT
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

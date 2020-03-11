@@ -1,5 +1,9 @@
 Analysis & Synthesis report for project
+<<<<<<< HEAD
 Wed Mar 11 08:27:28 2020
+=======
+Fri Mar 06 12:39:27 2020
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -79,7 +83,11 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
+<<<<<<< HEAD
 ; Analysis & Synthesis Status        ; Successful - Wed Mar 11 08:27:28 2020       ;
+=======
+; Analysis & Synthesis Status        ; Successful - Fri Mar 06 12:39:27 2020       ;
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; project                                     ;
 ; Top-level Entity Name              ; project                                     ;
@@ -187,6 +195,7 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
+<<<<<<< HEAD
 ; Number detected on machine ; 12          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
@@ -241,6 +250,62 @@ refer to the applicable agreement for further details.
 ; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                                                                         ;             ;
 ; db/altsyncram_8fe1.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/altsyncram_8fe1.tdf                                             ;             ;
 +--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+=======
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                                                                                                    ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                                                                                                          ; Library     ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; project.vhd                                                        ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/project.vhd                                                        ;             ;
+; datacapture.vhd                                                    ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd                                                    ;             ;
+; hdlverifier_capture_core.vhd                                       ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd                                       ;             ;
+; hdlverifier_jtag_register.vhd                                      ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_register.vhd                                      ;             ;
+; hdlverifier_synchronizer.vhd                                       ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_synchronizer.vhd                                       ;             ;
+; hdlverifier_capture_data.vhd                                       ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_data.vhd                                       ;             ;
+; hdlverifier_dcram.vhd                                              ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_dcram.vhd                                              ;             ;
+; hdlverifier_capture_jtag_core.vhd                                  ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_jtag_core.vhd                                  ;             ;
+; hdlverifier_jtag_vendor_ip0.vhd                                    ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd                                    ;             ;
+; sld_virtual_jtag.v                                                 ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag.v                                                                                                                                             ;             ;
+; sld_virtual_jtag_basic.v                                           ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v                                                                                                                                       ;             ;
+; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                                                                                  ;             ;
+; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                                                                              ;             ;
+; hdlverifier_capture_trigger_condition.vhd                          ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd                          ;             ;
+; hdlverifier_capture_comparator.vhd                                 ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_comparator.vhd                                 ;             ;
+; hdlverifier_capture_comparator_1bit.vhd                            ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_comparator_1bit.vhd                            ;             ;
+; hdlverifier_capture_trigger_combine.vhd                            ; yes             ; Auto-Found VHDL File                         ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_combine.vhd                            ;             ;
+; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_hub.vhd                                                                                                                                                    ; altera_sld  ;
+; db/ip/sld3172de05/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/alt_sld_fab.v                                    ; alt_sld_fab ;
+; db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
+; db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
+; db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
+; db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
+; db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
+; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                                                                                                               ;             ;
+; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                                                                                                                 ;             ;
+; altsyncram.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                                                                                                                                 ;             ;
+; stratix_ram_block.inc                                              ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                                                                                          ;             ;
+; lpm_mux.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                                                                                                    ;             ;
+; lpm_decode.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                                                                                                 ;             ;
+; aglobal181.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                                                                                                                                 ;             ;
+; a_rdenreg.inc                                                      ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                                                                                  ;             ;
+; altrom.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc                                                                                                                                                     ;             ;
+; altram.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc                                                                                                                                                     ;             ;
+; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                                                                                   ;             ;
+; db/altsyncram_8fe1.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/altsyncram_8fe1.tdf                                             ;             ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 
 
 +------------------------------------------------------------------------+
@@ -1220,6 +1285,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SLD           ; 1                           ;
 ;     SCLR              ; 37                          ;
 ;     plain             ; 292                         ;
+<<<<<<< HEAD
 ; cycloneiii_lcell_comb ; 517                         ;
 ;     arith             ; 141                         ;
 ;         2 data inputs ; 107                         ;
@@ -1227,6 +1293,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     normal            ; 376                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 17                          ;
+=======
+; cycloneiii_lcell_comb ; 518                         ;
+;     arith             ; 141                         ;
+;         2 data inputs ; 107                         ;
+;         3 data inputs ; 34                          ;
+;     normal            ; 377                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 18                          ;
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 ;         2 data inputs ; 54                          ;
 ;         3 data inputs ; 123                         ;
 ;         4 data inputs ; 181                         ;
@@ -1242,7 +1317,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
+<<<<<<< HEAD
 ; Top            ; 00:00:02     ;
+=======
+; Top            ; 00:00:03     ;
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 +----------------+--------------+
 
 
@@ -1252,6 +1331,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+<<<<<<< HEAD
     Info: Processing started: Wed Mar 11 08:26:55 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off project -c project
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1314,6 +1394,58 @@ Info (12128): Elaborating entity "hdlverifier_jtag_vendor_ip0" for hierarchy "da
 Info (12128): Elaborating entity "sld_virtual_jtag" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 49
 Info (12130): Elaborated megafunction instantiation "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 49
 Info (12133): Instantiated megafunction "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" with the following parameter: File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 49
+=======
+    Info: Processing started: Fri Mar 06 12:38:13 2020
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off project -c project
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (12125): Using design file project.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: project-blink_arch File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/project.vhd Line: 30
+    Info (12023): Found entity 1: project File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/project.vhd Line: 10
+Info (12127): Elaborating entity "project" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at project.vhd(47): object "LED_BUFFER" assigned a value but never read File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/project.vhd Line: 47
+Warning (12125): Using design file datacapture.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: datacapture-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd Line: 24
+    Info (12023): Found entity 1: datacapture File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd Line: 13
+Info (12128): Elaborating entity "datacapture" for hierarchy "datacapture:u0" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/project.vhd Line: 65
+Warning (10036): Verilog HDL or VHDL warning at datacapture.vhd(59): object "start_flag" assigned a value but never read File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd Line: 59
+Warning (12125): Using design file hdlverifier_capture_core.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_core-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 35
+    Info (12023): Found entity 1: hdlverifier_capture_core File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 17
+Info (12128): Elaborating entity "hdlverifier_capture_core" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd Line: 73
+Warning (10036): Verilog HDL or VHDL warning at hdlverifier_capture_core.vhd(62): object "user_data_out2" assigned a value but never read File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 62
+Warning (10036): Verilog HDL or VHDL warning at hdlverifier_capture_core.vhd(63): object "user_data_out3" assigned a value but never read File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 63
+Warning (12125): Using design file hdlverifier_jtag_register.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_jtag_register-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_register.vhd Line: 37
+    Info (12023): Found entity 1: hdlverifier_jtag_register File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_register.vhd Line: 15
+Info (12128): Elaborating entity "hdlverifier_jtag_register" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_jtag_register:register_manager" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 162
+Warning (12125): Using design file hdlverifier_synchronizer.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_synchronizer-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_synchronizer.vhd Line: 22
+    Info (12023): Found entity 1: hdlverifier_synchronizer File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_synchronizer.vhd Line: 13
+Info (12128): Elaborating entity "hdlverifier_synchronizer" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_jtag_register:register_manager|hdlverifier_synchronizer:s0" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_register.vhd Line: 59
+Info (12128): Elaborating entity "hdlverifier_synchronizer" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_synchronizer:sync_trigger" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 183
+Warning (12125): Using design file hdlverifier_capture_data.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_data-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_data.vhd Line: 43
+    Info (12023): Found entity 1: hdlverifier_capture_data File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_data.vhd Line: 15
+Info (12128): Elaborating entity "hdlverifier_capture_data" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_data:u_capture" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 192
+Info (12128): Elaborating entity "hdlverifier_synchronizer" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_data:u_capture|hdlverifier_synchronizer:s1" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_data.vhd Line: 134
+Warning (12125): Using design file hdlverifier_dcram.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_dcram-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_dcram.vhd Line: 29
+    Info (12023): Found entity 1: hdlverifier_dcram File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_dcram.vhd Line: 13
+Info (12128): Elaborating entity "hdlverifier_dcram" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_data:u_capture|hdlverifier_dcram:u_dcram" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_data.vhd Line: 149
+Info (12128): Elaborating entity "hdlverifier_synchronizer" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_data:u_capture|hdlverifier_synchronizer:s3" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_data.vhd Line: 241
+Warning (12125): Using design file hdlverifier_capture_jtag_core.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_jtag_core-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_jtag_core.vhd Line: 34
+    Info (12023): Found entity 1: hdlverifier_capture_jtag_core File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_jtag_core.vhd Line: 14
+Info (12128): Elaborating entity "hdlverifier_capture_jtag_core" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 218
+Warning (12125): Using design file hdlverifier_jtag_vendor_ip0.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_jtag_vendor_ip0-jtag_vendor_ip0_arch File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 25
+    Info (12023): Found entity 1: hdlverifier_jtag_vendor_ip0 File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 12
+Info (12128): Elaborating entity "hdlverifier_jtag_vendor_ip0" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_jtag_core.vhd Line: 84
+Info (12128): Elaborating entity "sld_virtual_jtag" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 49
+Info (12130): Elaborated megafunction instantiation "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 49
+Info (12133): Instantiated megafunction "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" with the following parameter: File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_jtag_vendor_ip0.vhd Line: 49
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
     Info (12134): Parameter "sld_sim_n_scan" = "0"
     Info (12134): Parameter "sld_sim_total_length" = "0"
     Info (12134): Parameter "sld_auto_instance_index" = "NO"
@@ -1325,12 +1457,33 @@ Info (12128): Elaborating entity "sld_virtual_jtag_impl" for hierarchy "datacapt
 Info (12131): Elaborated megafunction instantiation "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst", which is child of megafunction instantiation "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v Line: 151
 Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_virtual_jtag_basic.v Line: 414
 Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_jtag_core:u_jtag_core|hdlverifier_jtag_vendor_ip0:u_jtag|sld_virtual_jtag:u_virtual_jtag|sld_virtual_jtag_basic:sld_virtual_jtag_basic_inst|sld_virtual_jtag_impl:sld_virtual_jtag_impl_inst|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
+<<<<<<< HEAD
 Info (12128): Elaborating entity "hdlverifier_capture_trigger_condition" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition" File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd Line: 89
 Info (12128): Elaborating entity "hdlverifier_capture_comparator" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition|hdlverifier_capture_comparator:u_hdlverifier_capture_comparator" File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 74
 Info (12128): Elaborating entity "hdlverifier_capture_comparator_1bit" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition|hdlverifier_capture_comparator_1bit:u_hdlverifier_capture_comparator_1bit" File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 85
 Info (12128): Elaborating entity "hdlverifier_capture_trigger_combine" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition|hdlverifier_capture_trigger_combine:u_hdlverifier_capture_trigger_combine" File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 103
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
 Info (11172): 2020.03.11.08:27:17 Progress: Loading sld3172de05/alt_sld_fab_wrapper_hw.tcl
+=======
+Warning (12125): Using design file hdlverifier_capture_trigger_condition.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_trigger_condition-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 25
+    Info (12023): Found entity 1: hdlverifier_capture_trigger_condition File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 13
+Info (12128): Elaborating entity "hdlverifier_capture_trigger_condition" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/datacapture.vhd Line: 89
+Warning (12125): Using design file hdlverifier_capture_comparator.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_comparator-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_comparator.vhd Line: 30
+    Info (12023): Found entity 1: hdlverifier_capture_comparator File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_comparator.vhd Line: 17
+Info (12128): Elaborating entity "hdlverifier_capture_comparator" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition|hdlverifier_capture_comparator:u_hdlverifier_capture_comparator" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 74
+Warning (12125): Using design file hdlverifier_capture_comparator_1bit.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_comparator_1bit-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_comparator_1bit.vhd Line: 28
+    Info (12023): Found entity 1: hdlverifier_capture_comparator_1bit File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_comparator_1bit.vhd Line: 16
+Info (12128): Elaborating entity "hdlverifier_capture_comparator_1bit" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition|hdlverifier_capture_comparator_1bit:u_hdlverifier_capture_comparator_1bit" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 85
+Warning (12125): Using design file hdlverifier_capture_trigger_combine.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: hdlverifier_capture_trigger_combine-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_combine.vhd Line: 29
+    Info (12023): Found entity 1: hdlverifier_capture_trigger_combine File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_combine.vhd Line: 15
+Info (12128): Elaborating entity "hdlverifier_capture_trigger_combine" for hierarchy "datacapture:u0|hdlverifier_capture_trigger_condition:u_hdlverifier_capture_trigger_condition|hdlverifier_capture_trigger_combine:u_hdlverifier_capture_trigger_combine" File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_trigger_condition.vhd Line: 103
+Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
+Info (11172): 2020.03.06.12:39:00 Progress: Loading sld3172de05/alt_sld_fab_wrapper_hw.tcl
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -1341,6 +1494,7 @@ Info (11172): Ident: "alt_sld_fab" instantiated altera_connection_identification
 Info (11172): Alt_sld_fab: Done "alt_sld_fab" with 6 modules, 6 files
 Info (11171): Finished IP generation for the debug fabric: alt_sld_fab.
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/alt_sld_fab.v
+<<<<<<< HEAD
     Info (12023): Found entity 1: alt_sld_fab File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/alt_sld_fab.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab.v
     Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
@@ -1353,6 +1507,20 @@ Info (12021): Found 2 design units, including 1 entities, in source file db/ip/s
     Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
     Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
+=======
+    Info (12023): Found entity 1: alt_sld_fab File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/alt_sld_fab.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab.v
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_ident.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_presplit.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd
+    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/ip/sld3172de05/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 Warning (276027): Inferred dual-clock RAM node "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_data:u_capture|hdlverifier_dcram:u_dcram|ram_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
 Info (19000): Inferred 1 megafunctions from design logic
     Info (276029): Inferred altsyncram megafunction from the following design logic: "datacapture:u0|hdlverifier_capture_core:u_hdlverifier_capture_core|hdlverifier_capture_data:u_capture|hdlverifier_dcram:u_dcram|ram_rtl_0" 
@@ -1387,9 +1555,15 @@ Info (12133): Instantiated megafunction "datacapture:u0|hdlverifier_capture_core
     Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
     Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8fe1.tdf
+<<<<<<< HEAD
     Info (12023): Found entity 1: altsyncram_8fe1 File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/altsyncram_8fe1.tdf Line: 27
 Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13000): Registers with preset signals will power-up high File: C:/Users/Elijah/Desktop/GitHub/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 45
+=======
+    Info (12023): Found entity 1: altsyncram_8fe1 File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/db/altsyncram_8fe1.tdf Line: 27
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high File: C:/Siri/University/EELE 489 (Capstone 2)/capstone_synchronousIllumination/FPGA_Mar2_WithCalibration-20200304T180346Z-001/FPGA_Mar2_WithCalibration/hdlverifier_capture_core.vhd Line: 45
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
@@ -1400,10 +1574,18 @@ Info (21057): Implemented 935 device resources after synthesis - the final resou
     Info (21059): Implemented 8 output pins
     Info (21061): Implemented 910 logic cells
     Info (21064): Implemented 7 RAM segments
+<<<<<<< HEAD
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
     Info: Peak virtual memory: 4878 megabytes
     Info: Processing ended: Wed Mar 11 08:27:28 2020
     Info: Elapsed time: 00:00:33
     Info: Total CPU time (on all processors): 00:00:47
+=======
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 4829 megabytes
+    Info: Processing ended: Fri Mar 06 12:39:27 2020
+    Info: Elapsed time: 00:01:14
+    Info: Total CPU time (on all processors): 00:01:42
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 
 

@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 Fitter Status : Successful - Wed Mar 11 08:27:38 2020
+=======
+Fitter Status : Failed - Fri Mar 06 12:39:33 2020
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : project
 Top-level Entity Name : project
 Family : Cyclone 10 LP
 Device : 10CL025YU256I7G
 Timing Models : Final
+<<<<<<< HEAD
 Total logic elements : 847 / 24,624 ( 3 % )
     Total combinational functions : 642 / 24,624 ( 3 % )
     Dedicated logic registers : 601 / 24,624 ( 2 % )
 Total registers : 601
+=======
+Total logic elements : 889 / 24,624 ( 4 % )
+    Total combinational functions : 640 / 24,624 ( 3 % )
+    Dedicated logic registers : 608 / 24,624 ( 2 % )
+Total registers : 608
+>>>>>>> bba7022f0ee495446106cd8eb11d54f161bf534a
 Total pins : 14 / 151 ( 9 % )
 Total virtual pins : 0
 Total memory bits : 896 / 608,256 ( < 1 % )

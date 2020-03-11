@@ -73,7 +73,7 @@ architecture blink_arch of project is
 
 		LED <= LED_output; 
 		
-		LED_out <= not LED_output;
+		LED_out <= LED_output;
 		
 --	process(KEY)
 --		begin
