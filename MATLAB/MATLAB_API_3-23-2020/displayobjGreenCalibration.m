@@ -5,13 +5,13 @@ global fullimage lock GreenOn GreenOff GreenZero
 
 img=double(inbytes.GetImageData.GetRawPixels1Byte);
 
-if (img(20) < 50) && (img(62480) > 200)
-    GreenOn = img;
-elseif (img(20) > 50) && (img(62480) < 200)
-    GreenOff = img;
-elseif any(img > 50)
-    GreenZero = img;
-end
+% if (img(20) < 50) && (img(62480) > 200)
+%     GreenOn = img;
+% elseif (img(20) > 50) && (img(62480) < 200)
+%     GreenOff = img;
+% elseif any(img > 50)
+%     GreenZero = img;
+% end
 
 imgh = reshape(img(), [250,250]);
 set(handles.image,'CData',imgh);

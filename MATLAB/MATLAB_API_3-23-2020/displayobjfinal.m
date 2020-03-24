@@ -1,7 +1,7 @@
 function displayobjfinal(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector.
-global fullimage lock w h caliRed caliGreen caliBlue A B C frameOrder nextFrame
+global fullimage lock w h caliRed caliGreen caliBlue A B C frameOrder nextFrame record v
 
 %Normal operation, updates every frame
 switch nextFrame
@@ -15,18 +15,34 @@ switch nextFrame
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
         if frameOrder == 1
-            img = cat(3, r,g,b); 
+            imgh = cat(3, r,g,b); 
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         elseif frameOrder == 2
-            img = cat(3, g,b,r);
+            imgh = cat(3, g,b,r);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         elseif frameOrder == 3
-            img = cat(3, b,r,g);
+            imgh = cat(3, b,r,g);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         end
-        set(handles.image,'CData',img); 
+        if record == 1
+            writeVideo(v,imgh);
+        else
+        end
+        set(handles.image,'CData',imgh); 
         if lock == 3 %just for histogram?
             setgraph(handles,handles.axes2);
         else  
         end
-        fullimage=img;
+        fullimage=imgh;
         nextFrame = 'Two';
         
     case 'Two' %signal for red to green
@@ -39,18 +55,33 @@ switch nextFrame
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
         if frameOrder == 1
-            img = cat(3, r,g,b);
+            imgh = cat(3, r,g,b);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         elseif frameOrder == 2
-            img = cat(3, g,b,r);
+            imgh = cat(3, g,b,r);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         elseif frameOrder == 3
-            img = cat(3, b,r,g);
+            imgh = cat(3, b,r,g);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         end
-        set(handles.image,'CData',img);
+        if record == 1
+            writeVideo(v,imgh);
+        end
+        set(handles.image,'CData',imgh);
         if lock == 3
             setgraph(handles,handles.axes2);
         else  
         end
-        fullimage=img;
+        fullimage=imgh;
         nextFrame = 'Three';
         
     case 'Three' %signal for green to blue
@@ -63,14 +94,29 @@ switch nextFrame
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
         if frameOrder == 1
-            img = cat(3, r,g,b);
+            imgh = cat(3, r,g,b);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         elseif frameOrder == 2
-            img = cat(3, g,b,r);
+            imgh = cat(3, g,b,r);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         elseif frameOrder == 3
-            img = cat(3, b,r,g);
+            imgh = cat(3, b,r,g);
+            idmax = find(imgh > 1);
+            idmin = find(imgh < 0);
+            imgh(idmax) = 1;
+            imgh(idmin) = 0;
         end
-        set(handles.image,'CData',img);
-        fullimage=img;
+        if record == 1
+            writeVideo(v,imgh);
+        end
+        set(handles.image,'CData',imgh);
+        fullimage=imgh;
         if lock == 3
             setgraph(handles,handles.axes2);
         else  

@@ -20,7 +20,7 @@ function varargout = NaneyeinterfaceUSB2(varargin)
 
 % Edit the above text to modify the response to help NaneyeinterfaceUSB2
 
-% Last Modified by GUIDE v2.5 13-Mar-2020 17:49:54
+% Last Modified by GUIDE v2.5 24-Mar-2020 14:48:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -183,7 +183,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running a s Y A B C nextFrame frameOrder
+global naneye1 keep_running a s Y A B C nextFrame frameOrder record v r g b
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -201,8 +201,13 @@ while keep_running
             A = zeros(1,62500);
             B = zeros(1,62500);
             C = zeros(1,62500);
+            r = reshape(A(), [250,250]);
+            g = reshape(B(), [250,250]);
+            b = reshape(C(), [250,250]);
             nextFrame = 'One';
             frameOrder = 1;
+            record = 2;
+            v = VideoWriter('newfile.avi','Motion JPEG AVI');
             choice=set(handles.startbuttom,'string','Confirm Start');
             keep_running = false;
             
@@ -210,7 +215,7 @@ while keep_running
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjfinal(e,handles));
+            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjtesting(e,handles));
             naneye1.StartCapture();
             choice=set(handles.startbuttom,'string','Stop');
             keep_running = false;
@@ -529,7 +534,7 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keep_running caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero
+global naneye1 keep_running caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero next
 
 keep_running=true;
 choice=get(handles.calibratebutton,'string');
@@ -540,6 +545,7 @@ while keep_running
         
        case 'Calibrate'
             disp("Hold the red calibration button and then press Take Red");
+            next = 'First';
             choice=set(handles.calibratebutton,'string','Take Red');
             keep_running = false;
         
@@ -633,4 +639,25 @@ switch choice
     case 'Revert to Original'
         frameOrder = 1;
         choice=set(handles.switchorderbutton,'string','Switch Order (1st Time)');
+end
+
+
+% --- Executes on button press in savevideobutton.
+function savevideobutton_Callback(hObject, eventdata, handles)
+% hObject    handle to savevideobutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global record v
+
+choice=get(handles.savevideobutton,'string');
+
+switch choice
+    case 'Start Record'
+        open(v);
+        record = 1;
+        choice=set(handles.savevideobutton,'string','Stop Record');
+    case 'Stop Record'
+        record = 2;
+        close(v);
+        choice=set(handles.savevideobutton,'string','Start Record');
 end
