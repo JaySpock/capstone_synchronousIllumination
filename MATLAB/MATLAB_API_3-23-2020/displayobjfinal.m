@@ -14,6 +14,7 @@ switch nextFrame
             g = reshape(Green(), [w,h]);
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
+            
         if frameOrder == 1
             imgh = cat(3, r,g,b); 
             idmax = find(imgh > 1);
@@ -33,6 +34,7 @@ switch nextFrame
             imgh(idmax) = 1;
             imgh(idmin) = 0;
         end
+        
         if record == 1
             writeVideo(v,imgh);
         else
