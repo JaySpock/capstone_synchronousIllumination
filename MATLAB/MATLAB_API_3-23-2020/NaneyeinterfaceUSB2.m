@@ -215,7 +215,7 @@ while keep_running
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjtesting(e,handles));
+            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjfinal(e,handles));
             naneye1.StartCapture();
             choice=set(handles.startbuttom,'string','Stop');
             keep_running = false;
@@ -562,12 +562,15 @@ while keep_running
         case 'Stop Red'
             disp("Now hold down the green calibration button and then press Take Green");
             naneye1.StopCapture();
+            next = 'First';
             choice=set(handles.calibratebutton,'string','Take Green');
             keep_running = false;
             
         case 'Take Green'
             disp("After holding for a couple of seconds, press Stop Green");
+            axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
+            axis off;
             lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjGreenCalibration(e,handles));
             naneye1.StartCapture();
             choice=set(handles.calibratebutton,'string','Stop Green');
@@ -576,6 +579,7 @@ while keep_running
         case 'Stop Green'
             disp("Now hold down the blue calibration button and then press Take Blue");
             naneye1.StopCapture();
+            next = 'First';
             choice=set(handles.calibratebutton,'string','Take Blue');
             keep_running = false;
             
@@ -595,15 +599,15 @@ while keep_running
             %do calibration math here
             CAL = zeros(187500,3);
             
-            RedOn = double(linspace(0,255,62500)); %these are just temporary to test GUI functionality
-            RedOff = double(linspace(255,0,62500)); 
-            RedZero = double(zeros(1,62500));
-            GreenOn = double(linspace(0,255,62500));
-            GreenOff = double(linspace(255,0,62500));
-            GreenZero = double(zeros(1,62500));
-            BlueOn = double(linspace(0,255,62500));
-            BlueOff = double(linspace(255,0,62500));
-            BlueZero = double(zeros(1,62500));
+%             RedOn = double(linspace(0,255,62500)); %these are just temporary to test GUI functionality
+%             RedOff = double(linspace(255,0,62500)); 
+%             RedZero = double(zeros(1,62500));
+%             GreenOn = double(linspace(0,255,62500));
+%             GreenOff = double(linspace(255,0,62500));
+%             GreenZero = double(zeros(1,62500));
+%             BlueOn = double(linspace(0,255,62500));
+%             BlueOff = double(linspace(255,0,62500));
+%             BlueZero = double(zeros(1,62500));
             
             for n=1:62500
                 CAL(3*n-2:3*n,:)=inv([RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)]);

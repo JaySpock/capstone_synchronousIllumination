@@ -25,10 +25,10 @@ switch next
         nexttile
         image(Green3);
         
-        order1 = input('Enter (1) if the first image is green turning on, (2) if green turning off, or (3) if completely off:  ');
-        order2 = input('Enter (1) if the second image is green turning on, (2) if green turning off, or (3) if completely off:  ');
+        orderg1 = input('Enter (1) if the first image is green turning on, (2) if green turning off, or (3) if completely off:  ');
+        orderg2 = input('Enter (1) if the second image is green turning on, (2) if green turning off, or (3) if completely off:  ');
         
-        if order1 == 1
+        if orderg1 == 1
             GreenOn = Green1;
                 if order2 == 2
                     GreenOff = Green2;
