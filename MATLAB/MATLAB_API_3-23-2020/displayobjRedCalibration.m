@@ -1,28 +1,39 @@
 function displayobjRedCalibration(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector. 
-global fullimage lock RedOn RedOff RedZero next Red1 Red2 Red3 Red1_img Red2_img Red3_img
+global keeprunred fullimage lock RedOn RedOff RedZero next Red0 Red1 Red2 Red3 Red0_img Red1_img Red2_img Red3_img
 
-img=uint8(inbytes.GetImageData.GetRawPixels1Byte);
-
+%img=uint8(inbytes.GetImageData.GetRawPixels1Byte);
+keeprunred = true;
+while keeprunred
 switch next
+    case 'Zeroth'
+        Red0 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Red0_img = reshape(Red0(), [250,250]);
+        pause(0.005);
+        next = 'First';
+        keeprunred = false;
     case 'First'
-        Red1 = img;
-        Red1_img = reshape(img(), [250,250]);
-        pause(0.007);
+        Red1 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Red1_img = reshape(Red1(), [250,250]);
+        pause(0.005);
         next = 'Second';
+        keeprunred = false;
     case 'Second'
-        Red2 = img;
-        Red2_img = reshape(img(), [250,250]);
-        pause(0.007);
+        Red2 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Red2_img = reshape(Red2(), [250,250]);
+        pause(0.005);
         next = 'Third';
+        keeprunred = false;
     case 'Third'
-        Red3 = img;
-        Red3_img = reshape(img(), [250,250]);
+        Red3 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Red3_img = reshape(Red3(), [250,250]);
 %         save('Red1_2mm.mat','Red1');
 %         save('Red2_2mm.mat','Red2');
 %         save('Red3_2mm.mat','Red3');
-        tiledlayout(1,3)
+        tiledlayout(1,4)
+        nexttile
+        image(Red0_img);
         nexttile
         image(Red1_img);
         nexttile
@@ -62,9 +73,16 @@ switch next
                 end   
         end
         next = 'Done';
+        keeprunred = false;
     case 'Done'
+%         img = uint8(inbytes.GetImageData.GetRawPixels1Byte);
+%         imgh = reshape(img(), [250,250]);
+%         pause(0.01);
+%         set(handles.image,'CData',imgh); 
+%         fullimage=imgh;
+        keeprunred = false;
 end
-
+end
 
 % if (img(20) < 50) && (img(62480) > 200)
 %     RedOn = img;
@@ -75,16 +93,16 @@ end
 % end
 
 
-imgh = reshape(img(), [250,250]);
-pause(0.01);
-set(handles.image,'CData',imgh); 
-fullimage=imgh;
-
-
-if lock == 3
-    setgraph(handles,handles.axes2);
-else
-end
+% imgh = reshape(img(), [250,250]);
+% pause(0.01);
+% set(handles.image,'CData',imgh); 
+% fullimage=imgh;
+% 
+% 
+% if lock == 3
+%     setgraph(handles,handles.axes2);
+% else
+% end
 
 % figure;
 % exported_fig=gca;

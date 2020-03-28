@@ -1,28 +1,39 @@
 function displayobjBlueCalibration(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector. 
-global fullimage lock BlueOn BlueOff BlueZero next Blue1 Blue2 Blue3 Blue1_img Blue2_img Blue3_img
+global keeprunblue fullimage lock BlueOn BlueOff BlueZero next Blue0 Blue1 Blue2 Blue3 Blue0_img Blue1_img Blue2_img Blue3_img
 
-img=uint8(inbytes.GetImageData.GetRawPixels1Byte);
-
+%img=uint8(inbytes.GetImageData.GetRawPixels1Byte);
+keeprunblue = true;
+while keeprunblue
 switch next
+    case 'Zeroth'
+        Blue0 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Blue0_img = reshape(Blue0(), [250,250]);
+        pause(0.005);
+        next = 'First';
+        keeprunblue = false;
     case 'First'
-        Blue1 = img;
-        Blue1_img = reshape(img(), [250,250]);
-        pause(0.007);
+        Blue1 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Blue1_img = reshape(Blue1(), [250,250]);
+        pause(0.005);
         next = 'Second';
+        keeprunblue = false;
     case 'Second'
-        Blue1 = img;
-        Blue2_img = reshape(img(), [250,250]);
-        pause(0.007);
+        Blue2 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Blue2_img = reshape(Blue2(), [250,250]);
+        pause(0.005);
         next = 'Third';
+        keeprunblue = false;
     case 'Third'
-        Blue3 = img;
-        Blue3_img = reshape(img(), [250,250]);
+        Blue3 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Blue3_img = reshape(Blue3(), [250,250]);
 %         save('Blue1_2mm.mat','Blue1');
 %         save('Blue2_2mm.mat','Blue2');
 %         save('Blue3_2mm.mat','Blue3');
-        tiledlayout(1,3)
+        tiledlayout(1,4)
+        nexttile
+        image(Blue0_img);
         nexttile
         image(Blue1_img);
         nexttile
@@ -62,7 +73,14 @@ switch next
                 end   
         end
         next = 'Done';
+        keeprunblue = false;
     case 'Done'
+%         img = uint8(inbytes.GetImageData.GetRawPixels1Byte);
+%         imgh = reshape(img(), [250,250]);
+%         pause(0.01);
+%         set(handles.image,'CData',imgh); 
+%         fullimage=imgh;
+        keeprunblue = false;
 end
 
 
@@ -75,16 +93,16 @@ end
 % end
 
 
-imgh = reshape(img(), [250,250]);
-pause(0.01);
-set(handles.image,'CData',imgh); 
-fullimage=imgh;
-
-
-if lock == 3
-    setgraph(handles,handles.axes2);
-else
-end
+% imgh = reshape(img(), [250,250]);
+% pause(0.01);
+% set(handles.image,'CData',imgh); 
+% fullimage=imgh;
+% 
+% 
+% if lock == 3
+%     setgraph(handles,handles.axes2);
+% else
+% end
 
 
 % figure;

@@ -44,7 +44,7 @@ end
 % --- Executes just before NaneyeinterfaceUSB2 is made visible.
 function NaneyeinterfaceUSB2_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for NaneyeinterfaceUSB2
-global lock naneye1 w h colorlist BW Thl Tlh 
+global lock naneye1 w h colorlist BW Thl Tlh
 
 clear global a; %clears the previous connection so a new updated Arduino connection can be established
 
@@ -183,7 +183,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running a s Y A B C nextFrame frameOrder record v r g b
+global naneye1 keep_running a s Y A B C nextFrame frameOrder record v r g b lh1
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -224,6 +224,7 @@ while keep_running
             %fclose(s);
             %clear global s; %ends connection to Arduino on stop
             naneye1.StopCapture();
+            delete(lh1);
             choice=set(handles.startbuttom,'string','Start');
             keep_running = false;
     end
@@ -534,70 +535,75 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keep_running caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero next
+global naneye1 keeprunning caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero next lh2 lh3 lh4
 
-keep_running=true;
+keeprunning=true;
 choice=get(handles.calibratebutton,'string');
 
-while keep_running
-    
+while keeprunning
+   
     switch choice
         
        case 'Calibrate'
             disp("Hold the red calibration button and then press Take Red");
-            next = 'First';
+            next = 'Zeroth';
             choice=set(handles.calibratebutton,'string','Take Red');
-            keep_running = false;
-        
+            keeprunning = false;
+       
         case 'Take Red'
             disp("After holding for a couple of seconds, press Stop Red"); %with the red calibration button still held down
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjRedCalibration(e,handles));
+            lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjRedCalibration(e,handles));
             naneye1.StartCapture();
             choice=set(handles.calibratebutton,'string','Stop Red');
-            keep_running = false;
+            keeprunning = false;
             
         case 'Stop Red'
             disp("Now hold down the green calibration button and then press Take Green");
             naneye1.StopCapture();
-            next = 'First';
+            delete(lh2);
+            pause(0.03);
+            next = 'Zeroth';
             choice=set(handles.calibratebutton,'string','Take Green');
-            keep_running = false;
+            keeprunning = false;
             
         case 'Take Green'
             disp("After holding for a couple of seconds, press Stop Green");
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjGreenCalibration(e,handles));
+            lh3 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjGreenCalibration(e,handles));
             naneye1.StartCapture();
             choice=set(handles.calibratebutton,'string','Stop Green');
-            keep_running = false;
+            keeprunning = false;
                
         case 'Stop Green'
             disp("Now hold down the blue calibration button and then press Take Blue");
             naneye1.StopCapture();
-            next = 'First';
+            delete(lh3);
+            pause(0.03);
+            next = 'Zeroth';
             choice=set(handles.calibratebutton,'string','Take Blue');
-            keep_running = false;
+            keeprunning = false;
             
         case 'Take Blue'
             disp("After holding for a couple of seconds, press End Calibration");
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjBlueCalibration(e,handles));
+            lh4 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjBlueCalibration(e,handles));
             naneye1.StartCapture();
             choice=set(handles.calibratebutton,'string','End Calibration');
-            keep_running = false;
+            keeprunning = false;
              
         case 'End Calibration'
             disp("Calibration finished"); %I could put this at the actual end?
             naneye1.StopCapture();
+            delete(lh4);
             %do calibration math here
-            CAL = zeros(187500,3);
+            CAL = double(zeros(187500,3));
             
 %             RedOn = double(linspace(0,255,62500)); %these are just temporary to test GUI functionality
 %             RedOff = double(linspace(255,0,62500)); 
@@ -616,7 +622,7 @@ while keep_running
             caliGreen = CAL(2:3:end,:);
             caliBlue  = CAL(3:3:end,:);
             choice=set(handles.calibratebutton,'string','Calibrate');
-            keep_running = false;
+            keeprunning = false;
             
     end
 end
