@@ -1,29 +1,34 @@
 function displayobjBlueCalibration(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector. 
-global fullimage lock BlueOn BlueOff BlueZero next Blue1 Blue2 Blue3
+global fullimage lock BlueOn BlueOff BlueZero next Blue1 Blue2 Blue3 Blue1_img Blue2_img Blue3_img
 
 img=uint8(inbytes.GetImageData.GetRawPixels1Byte);
 
 switch next
     case 'First'
-        Blue1 = reshape(img(), [250,250]);
+        Blue1 = img;
+        Blue1_img = reshape(img(), [250,250]);
+        pause(0.007);
         next = 'Second';
     case 'Second'
-        Blue2 = reshape(img(), [250,250]);
+        Blue1 = img;
+        Blue2_img = reshape(img(), [250,250]);
+        pause(0.007);
         next = 'Third';
     case 'Third'
-        Blue3 = reshape(img(), [250,250]);
+        Blue3 = img;
+        Blue3_img = reshape(img(), [250,250]);
 %         save('Blue1_2mm.mat','Blue1');
 %         save('Blue2_2mm.mat','Blue2');
 %         save('Blue3_2mm.mat','Blue3');
         tiledlayout(1,3)
         nexttile
-        image(Blue1);
+        image(Blue1_img);
         nexttile
-        image(Blue2);
+        image(Blue2_img);
         nexttile
-        image(Blue3);
+        image(Blue3_img);
         
         order1 = input('Enter (1) if the first image is blue turning on, (2) if blue turning off, or (3) if completely off:  ');
         order2 = input('Enter (1) if the second image is blue turning on, (2) if blue turning off, or (3) if completely off:  ');
@@ -71,7 +76,7 @@ end
 
 
 imgh = reshape(img(), [250,250]);
-pause(0.012);
+pause(0.01);
 set(handles.image,'CData',imgh); 
 fullimage=imgh;
 
