@@ -10,20 +10,20 @@ switch next
     case 'First'
         Red1 = double(inbytes.GetImageData.GetRawPixels1Byte);
         Red1_img = reshape(Red1(), [250,250]);
-        pause(0.006);
-        next = 'First';
+        pause(0.005);
+        next = 'Second';
         keeprunred = false;
     case 'Second'
         Red2 = double(inbytes.GetImageData.GetRawPixels1Byte);
         Red2_img = reshape(Red2(), [250,250]);
-        pause(0.006);
-        next = 'Second';
+        pause(0.005);
+        next = 'Third';
         keeprunred = false;
     case 'Third'
         Red3 = double(inbytes.GetImageData.GetRawPixels1Byte);
         Red3_img = reshape(Red3(), [250,250]);
-        pause(0.006);
-        next = 'Third';
+        pause(0.005);
+        next = 'Fourth';
         keeprunred = false;
     case 'Fourth'
         Red4 = double(inbytes.GetImageData.GetRawPixels1Byte);

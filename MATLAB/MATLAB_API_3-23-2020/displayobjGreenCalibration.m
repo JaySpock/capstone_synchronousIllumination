@@ -1,88 +1,92 @@
 function displayobjGreenCalibration(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector. 
-global keeprungreen fullimage lock GreenOn GreenOff GreenZero next Green0 Green1 Green2 Green3 Green0_img Green1_img Green2_img Green3_img
+global keeprunGreen fullimage lock GreenOn GreenOff GreenZero next Green1 Green2 Green3 Green4 Green1_img Green2_img Green3_img Green4_img
 
 %img=uint8(inbytes.GetImageData.GetRawPixels1Byte);
-keeprungreen = true;
-while keeprungreen
+keeprunGreen = true;
+while keeprunGreen
 switch next
-    case 'Zeroth'
-        Green0 = double(inbytes.GetImageData.GetRawPixels1Byte);
-        Green0_img = reshape(Green0(), [250,250]);
-        pause(0.005);
-        next = 'First';
-        keeprungreen = false;
     case 'First'
         Green1 = double(inbytes.GetImageData.GetRawPixels1Byte);
         Green1_img = reshape(Green1(), [250,250]);
         pause(0.005);
         next = 'Second';
-        keeprungreen = false;
+        keeprunGreen = false;
     case 'Second'
         Green2 = double(inbytes.GetImageData.GetRawPixels1Byte);
         Green2_img = reshape(Green2(), [250,250]);
         pause(0.005);
         next = 'Third';
-        keeprungreen = false;
+        keeprunGreen = false;
     case 'Third'
         Green3 = double(inbytes.GetImageData.GetRawPixels1Byte);
         Green3_img = reshape(Green3(), [250,250]);
+        pause(0.005);
+        next = 'Fourth';
+        keeprunGreen = false;
+    case 'Fourth'
+        Green4 = double(inbytes.GetImageData.GetRawPixels1Byte);
+        Green4_img = reshape(Green4(), [250,250]);
 %         save('Green1_2mm.mat','Green1');
 %         save('Green2_2mm.mat','Green2');
 %         save('Green3_2mm.mat','Green3');
         tiledlayout(1,4)
         nexttile
-        image(Green0_img);
+        image(Green1_img); title('1');
         nexttile
-        image(Green1_img);
+        image(Green2_img); title('2');
         nexttile
-        image(Green2_img);
+        image(Green3_img); title('3');
         nexttile
-        image(Green3_img);
+        image(Green4_img); title('4');
         
-        order1 = input('Enter (1) if the first image is green turning on, (2) if green turning off, or (3) if completely off:  ');
-        order2 = input('Enter (1) if the second image is green turning on, (2) if green turning off, or (3) if completely off:  ');
-        
-        if order1 == 1
-            GreenOn = Green1;
-                if order2 == 2
-                    GreenOff = Green2;
-                    GreenZero = Green3;
-                elseif order2 == 3
-                    GreenZero = Green2;
-                    GreenOff = Green3;
-                end
-        elseif order1 == 2
-            GreenOff = Green1;
-                if order2 == 1
-                    GreenOn = Green2;
-                    GreenZero = Green3;
-                elseif order2 == 3
-                    GreenZero = Green2;
-                    GreenOn = Green3;
-                end
-        elseif order1 == 3
-            GreenZero = Green1;
-                if order2 == 1
-                    GreenOn = Green2;
-                    GreenOff = Green3;
-                elseif order2 == 2
-                    GreenOff = Green2;
-                    GreenOn = Green3;
-                end   
+        oninput = input('Which figure represents green turning on?  ');
+        switch oninput
+            case 1
+                GreenOn = Green1;
+            case 2
+                GreenOn = Green2;
+            case 3
+                GreenOn = Green3;
+            case 4
+                GreenOn = Green4;
         end
+        offinput = input('Which figure represents green turning off?  ');
+        switch offinput
+            case 1
+                GreenOff = Green1;
+            case 2
+                GreenOff = Green2;
+            case 3
+                GreenOff = Green3;
+            case 4
+                GreenOff = Green4;
+        end
+        zeroinput = input('Which figure represents green completely off?  ');
+        switch zeroinput
+            case 1
+                GreenZero = Green1;
+            case 2
+                GreenZero = Green2;
+            case 3
+                GreenZero = Green3;
+            case 4
+                GreenZero = Green4;
+        end
+        
         next = 'Done';
-        keeprungreen = false;
+        keeprunGreen = false;
+        
     case 'Done'
-%         img = unit8(inbytes.GetImageData.GetRawPixels1Byte);
+%         img = uint8(inbytes.GetImageData.GetRawPixels1Byte);
 %         imgh = reshape(img(), [250,250]);
 %         pause(0.01);
 %         set(handles.image,'CData',imgh); 
 %         fullimage=imgh;
-        keeprungreen = false;
+        keeprunGreen = false;
 end
-
+end
 
 % if (img(20) < 50) && (img(62480) > 200)
 %     GreenOn = img;
@@ -103,7 +107,6 @@ end
 %     setgraph(handles,handles.axes2);
 % else
 % end
-
 
 % figure;
 % exported_fig=gca;

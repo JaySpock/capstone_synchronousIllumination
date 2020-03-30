@@ -546,7 +546,7 @@ while keeprunning
         
        case 'Calibrate'
             disp("Hold the red calibration button and then press Take Red");
-            next = 'Zeroth';
+            next = 'First';
             choice=set(handles.calibratebutton,'string','Take Red');
             keeprunning = false;
        
@@ -565,7 +565,7 @@ while keeprunning
             naneye1.StopCapture();
             delete(lh2);
             pause(0.03);
-            next = 'Zeroth';
+            next = 'First';
             choice=set(handles.calibratebutton,'string','Take Green');
             keeprunning = false;
             
@@ -584,7 +584,7 @@ while keeprunning
             naneye1.StopCapture();
             delete(lh3);
             pause(0.03);
-            next = 'Zeroth';
+            next = 'First';
             choice=set(handles.calibratebutton,'string','Take Blue');
             keeprunning = false;
             
