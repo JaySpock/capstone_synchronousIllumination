@@ -1,0 +1,49 @@
+
+State Machine - |hello_world|nios_setup:u0|nios_setup_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:button_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |hello_world|nios_setup:u0|nios_setup_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:data_out_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |hello_world|nios_setup:u0|nios_setup_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_memory_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |hello_world|nios_setup:u0|nios_setup_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:jtag_uart_avalon_jtag_slave_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |hello_world|nios_setup:u0|hdlverifier_axi_master:matlab_as_axi_master_0|state_write
+Name state_write.WSTATE_WAIT_BVALID state_write.WSTATE_WAIT_WREADY state_write.WSTATE_WAIT_AWREADY state_write.WSTATE_WAIT_BOTH state_write.WSTATE_RFIRST state_write.WSTATE_IDLE 
+state_write.WSTATE_IDLE 0 0 0 0 0 0 
+state_write.WSTATE_RFIRST 0 0 0 0 1 1 
+state_write.WSTATE_WAIT_BOTH 0 0 0 1 0 1 
+state_write.WSTATE_WAIT_AWREADY 0 0 1 0 0 1 
+state_write.WSTATE_WAIT_WREADY 0 1 0 0 0 1 
+state_write.WSTATE_WAIT_BVALID 1 0 0 0 0 1 
+
+State Machine - |hello_world|nios_setup:u0|hdlverifier_axi_master:matlab_as_axi_master_0|hdlverifier_jtag_core:u_jtag|state_reg
+Name state_reg.STATE_READ_DATA state_reg.STATE_WR_TRANSIT state_reg.STATE_WAIT_PAD state_reg.STATE_READ_REG state_reg.STATE_WRITE_REG state_reg.STATE_CMD state_reg.STATE_HEADER state_reg.STATE_IDLE state_reg.STATE_WRITE_DATA 
+state_reg.STATE_IDLE 0 0 0 0 0 0 0 0 0 
+state_reg.STATE_HEADER 0 0 0 0 0 0 1 1 0 
+state_reg.STATE_CMD 0 0 0 0 0 1 0 1 0 
+state_reg.STATE_WRITE_REG 0 0 0 0 1 0 0 1 0 
+state_reg.STATE_READ_REG 0 0 0 1 0 0 0 1 0 
+state_reg.STATE_WAIT_PAD 0 0 1 0 0 0 0 1 0 
+state_reg.STATE_WR_TRANSIT 0 1 0 0 0 0 0 1 0 
+state_reg.STATE_READ_DATA 1 0 0 0 0 0 0 1 0 
+state_reg.STATE_WRITE_DATA 0 0 0 0 0 0 0 1 1 

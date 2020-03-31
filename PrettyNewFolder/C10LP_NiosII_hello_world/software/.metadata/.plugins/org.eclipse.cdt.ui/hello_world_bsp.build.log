@@ -1,0 +1,6 @@
+15:38:07 **** Build of configuration Nios II for project hello_world_bsp ****
+make all 
+[BSP build complete]
+
+15:38:09 Build Finished (took 1s.500ms)
+
