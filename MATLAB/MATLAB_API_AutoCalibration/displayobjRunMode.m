@@ -35,8 +35,10 @@ elseif (input == 12) %green off, blue on
             g = reshape(Green(), [w,h]);
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
+elseif (input == 13)
+    disp("Error in FPGA code");
 else
-    disp("Something's wrong!");
+    disp("Unknown value being read in");
 end
 
 if frameOrder == 1

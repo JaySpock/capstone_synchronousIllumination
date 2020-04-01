@@ -30,8 +30,10 @@ elseif (input == 9) %blue staying off
     BlueZero = hbytes;
 elseif (input == 13) %error in FPGA code
     disp("Error in FPGA code");
-elseif ((input < 
-    disp("Not in calibration mode");
+elseif ((input < 13) && (input > 9))
+    disp("Uh oh! We're in normal run mode");
+else
+    disp("Unknown value being read in");
 end
     
 
