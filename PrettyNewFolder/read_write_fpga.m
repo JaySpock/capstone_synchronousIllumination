@@ -30,11 +30,11 @@ h = aximaster('Intel');
 writememory(h,16384,2);
 for i = 0:1:500
     x = readmemory(h,16400,1);
-    if (x == 7)
+    if (x == 10)
         disp('red');
-    elseif (x==8)
+    elseif (x==11)
         disp('green');
-    elseif (x == 9)
+    elseif (x == 12)
         disp('blue');
     end;
 end

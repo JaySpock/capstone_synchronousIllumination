@@ -30,9 +30,9 @@ h = aximaster('Intel');
 writememory(h,16384,2);
 for i = 0:1:500
     x = readmemory(h,16400,1);
-    if (x == 7)
+    if (x == 10)
         disp('red');
-    elseif (x==8)
+    elseif (x==11)
         disp('green');
     elseif (x == 9)
         disp('blue');
@@ -43,21 +43,27 @@ writememory(h,16384,0);
 writememory(h,16384,1);
 disp('Calibrate');
 tic
-for i = 0:1:5000
+for i = 0:1:500
     x = readmemory(h,16400,1);
     if (x == 1)
         disp('red');
     elseif (x==2)
-        disp('red off (1s');
+        disp('red off (1st)');
     elseif (x==3)
-        disp('red off ');
+        disp('red off (2nd)');
     elseif (x==4)
-        disp('green off');   
-    elseif (x == 5)
+        disp('green');
+    elseif (x==5)
+        disp('green off (1st)');
+    elseif (x==6)
+        disp('green off (2nd)');
+    elseif (x == 7)
         disp('blue');
-    elseif (x == 6)
-        disp('blue off');
-    elseif (x > 6)
+    elseif (x==8)
+        disp('blue off (1st)');
+    elseif (x==9)
+        disp('blue off (2nd)');
+    elseif (x > 10)
         disp('regular run');
     end;
    
