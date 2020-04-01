@@ -7,11 +7,9 @@ h = aximaster('Intel');
 % ever we need in this. The fpga never updates this memory.
 % 0x4000 - 0x400f (16384 - 16399) is the "Buttons". This controls what mode
 % we are in:
-% 0 - No light on (this will be start of calibration as well)
-% 3 - Blue calibration (blue on 1 frame/ all off 2 frames)
-% 5 - Green calibration
-% 6 - Red calibration
-% 7 - Regular run mode
+% 0 - No light on 
+% 1 - Run calibration in loop
+% 2 - Run Regular mode
 % 0x4010 - 0x401f (16400 - 16415) is the "Data_out". This lets us know what
 % current LED is turned on. Reading data:
 % 0 - all leds off
