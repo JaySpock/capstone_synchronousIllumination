@@ -14,15 +14,18 @@ h = aximaster('Intel');
 % current LED is turned on. Reading data:
 % 0 - all leds off
 % 1 - red led calibration
-% 2 - all leds off after red calibration
-% 3 - green led calibration
-% 4 - all leds off after green calibration
-% 5 - blue led calibration
-% 6 - all leds off after blue calibration
-% 7 - red led normal run mode
-% 8 - green led normal run
-% 9 - blue led normal run
-% 10 - if my code breaks it will show a 10 and no leds on
+% 2 - red led turning off
+% 3 - all leds staying off
+% 4 - green led calibration
+% 5 - green leds turning off
+% 6 - all leds staying off
+% 7 - blue led calibration
+% 8 - blue led turning off
+% 9 - all leds staying off
+% 10 - red led normal run mode
+% 11 - green led normal run
+% 12 - blue led normal run
+% 13 - if my code breaks it will show a 13 and no leds on
 %%
 writememory(h,16384,2);
 for i = 0:1:500

@@ -61,7 +61,7 @@ architecture hello_world_arch of hello_world is
 	
 	signal DATA_OUT		: std_logic_vector(4 downto 0) := "00000";
 	
-	signal Button_comp 	: std_logic_vector(2 downto 0) := "001";
+	signal Button_comp 	: std_logic_vector(2 downto 0) := "000";
 
 	begin 
 
@@ -140,39 +140,39 @@ architecture hello_world_arch of hello_world is
 										LED_output <= "111";	
 										startup_frame <= 1;
 										cal_cnt <= 0;
-										DATA_OUT <= "00010";	
+										DATA_OUT <= "00011";	
 									end if;
 	
 								when 1	=>									--GREEN startup frame
 									if(cal_cnt = 1) then
 										LED_output <= "111";
 										cal_cnt <= cal_cnt + 1;
-										DATA_OUT <= "00100";	
+										DATA_OUT <= "00101";	
 									elsif(cal_cnt = 0) then
 										LED_output <= "101";
 										cal_cnt <= cal_cnt + 1;
-										DATA_OUT <= "00011";	
+										DATA_OUT <= "00100";	
 									else
 										LED_output <= "111";	
 										startup_frame <= 2;
 										cal_cnt <= 0;
-										DATA_OUT <= "00100";
+										DATA_OUT <= "00110";
 									end if;
 								
 								when 2 	=>
 									if(cal_cnt = 1) then					--BLUE startup frame
 										LED_output <= "111";
 										cal_cnt <= cal_cnt + 1;	
-										DATA_OUT <= "00110";
+										DATA_OUT <= "01000";
 									elsif(cal_cnt = 0) then
 										LED_output <= "011";
 										cal_cnt <= cal_cnt + 1;
-										DATA_OUT <= "00101";
+										DATA_OUT <= "00111";
 									else
 										LED_output <= "111";	
 										startup_frame <= 0;
 										cal_cnt <= 0;
-										DATA_OUT <= "00110";	
+										DATA_OUT <= "01001";	
 									end if;
 								when others =>							-- if calibration mode is set to run and the start up frame is outside of the 3 calibration frames
 									startup_frame <= 0;					-- then set startup mode to known calibration frame start
@@ -185,23 +185,23 @@ architecture hello_world_arch of hello_world is
 							case LED_output is
 									when "110" =>
 										LED_output <= "101";
-										DATA_OUT <= "01000";
+										DATA_OUT <= "01011";
 									when "101" =>
 										LED_output <= "011";
-										DATA_OUT <= "01001";
+										DATA_OUT <= "01100";
 									when "011" =>
 										LED_output <= "110";
-										DATA_OUT <= "00111";
+										DATA_OUT <= "01010";
 									when "111" =>
 										LED_output <= "110";
-										DATA_OUT <= "00111";	
+										DATA_OUT <= "01010";	
 									when others =>
 										LED_output <= "111";
-										DATA_OUT <= "01010";
+										DATA_OUT <= "01101";
 							end case;
 						else
 							LED_output <= "111";
-							DATA_OUT <= "01010";
+							DATA_OUT <= "01101";
 						end if;	
 
 					elsif (DATA_BUFFER = '1' and cnt >250000) then
