@@ -198,7 +198,7 @@ while keep_running
             b = reshape(C(), [250,250]);
             frameOrder = 1;
             record = 2;
-            v = VideoWriter('newfile.avi','Motion JPEG AVI');
+            v = VideoWriter('SecondColorVideoTest.avi','Uncompressed AVI');
             writememory(FPGA,16384,2);
             disp("Ready");
             choice=set(handles.startbuttom,'string','Confirm Start');
