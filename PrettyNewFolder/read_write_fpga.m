@@ -48,16 +48,22 @@ for i = 0:1:500
     if (x == 1)
         disp('red');
     elseif (x==2)
-        disp('red off');
+        disp('red off (1st)');
     elseif (x==3)
-        disp('green');
+        disp('red off (2nd)');
     elseif (x==4)
-        disp('green off');   
-    elseif (x == 5)
+        disp('green');
+    elseif (x==5)
+        disp('green off (1st)');
+    elseif (x==6)
+        disp('green off (2nd)');
+    elseif (x == 7)
         disp('blue');
-    elseif (x == 6)
-        disp('blue off');
-    elseif (x > 6)
+    elseif (x==8)
+        disp('blue off (1st)');
+    elseif (x==9)
+        disp('blue off (2nd)');
+    elseif (x > 10)
         disp('regular run');
     end;
    
