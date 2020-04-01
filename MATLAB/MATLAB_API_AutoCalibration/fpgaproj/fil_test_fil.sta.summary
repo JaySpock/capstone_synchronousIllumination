@@ -1,0 +1,149 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 100C Model Setup 'gmii_tx_clk'
+Slack : 0.363
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Setup 'dut_clk'
+Slack : 30.138
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Setup 'altera_reserved_tck'
+Slack : 45.689
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'altera_reserved_tck'
+Slack : 0.334
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'dut_clk'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'gmii_tx_clk'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Recovery 'altera_reserved_tck'
+Slack : 95.291
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Removal 'altera_reserved_tck'
+Slack : 1.225
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'gmii_tx_clk'
+Slack : 3.668
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'sysclk'
+Slack : 9.785
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'dut_clk'
+Slack : 19.667
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.456
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Setup 'gmii_tx_clk'
+Slack : 1.333
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Setup 'dut_clk'
+Slack : 31.328
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Setup 'altera_reserved_tck'
+Slack : 46.332
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'altera_reserved_tck'
+Slack : 0.329
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'dut_clk'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'gmii_tx_clk'
+Slack : 0.344
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Recovery 'altera_reserved_tck'
+Slack : 95.895
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Removal 'altera_reserved_tck'
+Slack : 1.082
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'gmii_tx_clk'
+Slack : 3.641
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'sysclk'
+Slack : 9.785
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'dut_clk'
+Slack : 19.640
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.310
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'gmii_tx_clk'
+Slack : 4.492
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'dut_clk'
+Slack : 35.340
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'altera_reserved_tck'
+Slack : 48.270
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'altera_reserved_tck'
+Slack : 0.123
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'dut_clk'
+Slack : 0.132
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'gmii_tx_clk'
+Slack : 0.136
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Recovery 'altera_reserved_tck'
+Slack : 97.669
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Removal 'altera_reserved_tck'
+Slack : 0.565
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'gmii_tx_clk'
+Slack : 3.718
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'sysclk'
+Slack : 9.424
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'dut_clk'
+Slack : 19.716
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.247
+TNS   : 0.000
+
+------------------------------------------------------------

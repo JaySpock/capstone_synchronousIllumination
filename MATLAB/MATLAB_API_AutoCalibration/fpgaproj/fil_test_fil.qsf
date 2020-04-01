@@ -1,0 +1,71 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+# Date created = 14:42:29  March 31, 2020
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		fil_test_fil_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone 10 LP"
+set_global_assignment -name DEVICE 10CL025YU256I7G
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:42:29  MARCH 31, 2020"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/fil_test.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/MWClkMgr.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/MWAJTAG.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/MWDPRAM.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILUDPCRC.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILPktMUX.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILCmdProc.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/MWAsyncFIFO.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILDataProc.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/MWPKTBuffer.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/MWUDPPKTBuilder.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILPktProc.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILCommLayer.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_dpscram.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_udfifo.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_bus2dut.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_chifcore.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_controller.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_dut2bus.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/fil_test_wrapper.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/mwfil_chiftop.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/FILCore.vhd"
+set_global_assignment -name VHDL_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/fil_test_fil.vhd"
+set_location_assignment PIN_E1 -to sysclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sysclk
+set_global_assignment -name SDC_FILE "C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/MATLAB/MATLAB_API_AutoCalibration/filsrc/fil_test_fil.sdc"
+set_global_assignment -name TOP_LEVEL_ENTITY fil_test_fil

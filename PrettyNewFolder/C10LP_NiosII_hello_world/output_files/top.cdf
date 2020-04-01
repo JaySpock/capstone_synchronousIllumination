@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10CL025YU256) Path("C:/Users/Elijah/Downloads/C10LP_NiosII_hello_world/output_files/") File("top.sof") MfrSpec(OpMask(1));
+		Device PartName(10CL025YU256) Path("C:/Users/jorda/Documents/MSU/Spring 2020/EELE 489R/capstone_synchronousIllumination/PrettyNewFolder/C10LP_NiosII_hello_world/output_files/") File("top.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
