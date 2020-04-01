@@ -44,10 +44,11 @@ end
 % --- Executes just before NaneyeinterfaceUSB2 is made visible.
 function NaneyeinterfaceUSB2_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for NaneyeinterfaceUSB2
-global lock naneye1 w h colorlist BW
+global lock naneye1 w h colorlist BW FPGA
 
 clear global a; %clears the previous connection so a new updated Arduino connection can be established
-
+hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18.1\quartus\bin64\quartus.exe');
+FPGA = aximaster('Intel');
 
 % The 'lock' variable is used to control if a histogram is to be displayed.
 % 'lock = -1' ensures that no histogram was requested and 'lock = 3' enables the displaying of the histogram. 
@@ -194,8 +195,6 @@ while keep_running
             r = reshape(A(), [250,250]);
             g = reshape(B(), [250,250]);
             b = reshape(C(), [250,250]);
-            hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18.1\quartus\bin64\quartus.exe');
-            FPGA = aximaster('Intel');
             frameOrder = 1;
             record = 2;
             v = VideoWriter('newfile.avi','Motion JPEG AVI');
@@ -537,6 +536,7 @@ while keeprunning
         
        case 'Calibrate'
             writememory(FPGA,16384,0);
+            writememory(FPGA,16384,7);
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
@@ -549,7 +549,7 @@ while keeprunning
             disp("Calibration finished"); %I could put this at the actual end?
             naneye1.StopCapture();
             delete(lh2);
-            writmemory(FPGA,16384,7);
+            writememory(FPGA,16384,7);
             CAL = double(zeros(187500,3));
             for n=1:62500
                 CAL(3*n-2:3*n,:)=inv([RedOn(n) ZeroCal(n) BlueOff(n); RedOff(n) GreenOn(n) ZeroCal(n); ZeroCal(n) GreenOff(n) BlueOn(n)]);
