@@ -26,7 +26,8 @@ h = aximaster('Intel');
 % 9 - blue led normal run
 % 10 - if my code breaks it will show a 10 and no leds on
 %%
-for i = 0:1:150
+writememory(h,16384,2);
+for i = 0:1:500
     x = readmemory(h,16400,1);
     if (x == 7)
         disp('red');
@@ -36,12 +37,12 @@ for i = 0:1:150
         disp('blue');
     end;
 end
-%%
 writememory(h,16384,0);
-writememory(h,16384,7);
-disp('Calibrate')
+%%
+writememory(h,16384,1);
+disp('Calibrate');
 tic
-for i = 0:1:150
+for i = 0:1:500
     x = readmemory(h,16400,1);
     if (x == 1)
         disp('red');
@@ -55,9 +56,10 @@ for i = 0:1:150
         disp('blue');
     elseif (x == 6)
         disp('blue off');
-    elseif (x >6)
+    elseif (x > 6)
         disp('regular run');
     end;
    
 end
 toc
+writememory(h,16384,0);

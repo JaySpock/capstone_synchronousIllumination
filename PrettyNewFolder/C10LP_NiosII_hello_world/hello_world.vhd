@@ -49,13 +49,13 @@ architecture hello_world_arch of hello_world is
 	
 	signal NEW_FRAME		: std_logic := '0'; 
 	
-	signal Calibration	: std_logic := '0'; 
-	
 	signal DATA_BUFFER	: std_logic;
 
 	signal cnt         	: INTEGER RANGE 0 TO 25000000;
 
-	signal startup_frame	: INTEGER RANGE 0 to 9 := 4;
+	signal startup_frame	: INTEGER RANGE 0 to 4 := 0;
+	
+	signal run_mode		: INTEGER RANGE 0 to 3 := 0;
 	
 	signal cal_cnt			: INTEGER RANGE 0 to 2;
 	
@@ -72,7 +72,7 @@ architecture hello_world_arch of hello_world is
 					led_external_connection_export    => DATA_OUT,    --    led_external_connection.export
 					reset_reset_n                     => KEY,                     --                      reset.reset_n
 					switch_external_connection_export => Button_comp  -- switch_external_connection.export
-			  );
+					);
 						
 		END_OF_FRAME <= NEW_FRAME;
 
@@ -101,13 +101,11 @@ architecture hello_world_arch of hello_world is
 					FIFO_reg(0) <= DATA;
 					
 					if(Button_comp = "000") then
-					   startup_frame <= 0;
-					elsif(Button_comp = "110") then
-						startup_frame <= 1;
-					elsif (Button_comp = "101") then
-						startup_frame <= 2;
-					elsif (Button_comp = "011") then
-						startup_frame <= 3;
+					   run_mode <= 0;
+					elsif(Button_comp = "001") then
+						run_mode <= 1;
+					elsif (Button_comp = "010") then
+						run_mode <= 2;
 					end if;
 
 				
@@ -120,71 +118,71 @@ architecture hello_world_arch of hello_world is
 						DATA_BUFFER <= '1';
 						cnt <= 0;
 						
-						case startup_frame is
-							when 0	=> 
-								Calibration <= '1';
-								LED_output <= "111";						--NO LIGHT startup frame
-								DATA_OUT <= "00000";
-								if(cal_cnt = 2) then
-									startup_frame <= 1;
-									cal_cnt <= 0;
-								else
-									cal_cnt <= cal_cnt + 1;
-								end if;
-								
-							when 1	=>
+						if (Button_comp = "000") then
+							LED_output <= "111";						
+							DATA_OUT <= "00000";
+							startup_frame <= 0;					-- then set startup mode to known calibration frame start
+							cal_cnt <= 0;
+						
+						elsif (Button_comp = "001") then
+							case startup_frame is
+								when 0	=>
 --								LED_output <= "110";						--RED startup frame
-								if(cal_cnt = 1) then
-									LED_output <= "111";
-									cal_cnt <= cal_cnt + 1;
-									DATA_OUT <= "00010";
-								elsif(cal_cnt = 0) then
-									LED_output <= "110";
-									cal_cnt <= cal_cnt + 1;	
-									DATA_OUT <= "00001";
-								else
-									LED_output <= "111";	
-									startup_frame <= 2;
-									cal_cnt <= 0;
-									DATA_OUT <= "00010";	
-								end if;
+									if(cal_cnt = 1) then
+										LED_output <= "111";
+										cal_cnt <= cal_cnt + 1;
+										DATA_OUT <= "00010";
+									elsif(cal_cnt = 0) then
+										LED_output <= "110";
+										cal_cnt <= cal_cnt + 1;	
+										DATA_OUT <= "00001";
+									else
+										LED_output <= "111";	
+										startup_frame <= 1;
+										cal_cnt <= 0;
+										DATA_OUT <= "00010";	
+									end if;
 	
-							when 2	=>									--GREEN startup frame
-								if(cal_cnt = 1) then
-									LED_output <= "111";
-									cal_cnt <= cal_cnt + 1;
-									DATA_OUT <= "00100";	
-								elsif(cal_cnt = 0) then
-									LED_output <= "101";
-									cal_cnt <= cal_cnt + 1;
-									DATA_OUT <= "00011";	
-								else
-									LED_output <= "111";	
-									startup_frame <= 3;
-									cal_cnt <= 0;
-									DATA_OUT <= "00100";
-								end if;
+								when 1	=>									--GREEN startup frame
+									if(cal_cnt = 1) then
+										LED_output <= "111";
+										cal_cnt <= cal_cnt + 1;
+										DATA_OUT <= "00100";	
+									elsif(cal_cnt = 0) then
+										LED_output <= "101";
+										cal_cnt <= cal_cnt + 1;
+										DATA_OUT <= "00011";	
+									else
+										LED_output <= "111";	
+										startup_frame <= 2;
+										cal_cnt <= 0;
+										DATA_OUT <= "00100";
+									end if;
 								
-							when 3 	=>
-								if(cal_cnt = 1) then					--BLUE startup frame
-									LED_output <= "111";
-									cal_cnt <= cal_cnt + 1;	
-									DATA_OUT <= "00110";
-								elsif(cal_cnt = 0) then
-									LED_output <= "011";
-									cal_cnt <= cal_cnt + 1;
-									DATA_OUT <= "00101";
-								else
-									LED_output <= "111";	
-									startup_frame <= 4;
+								when 2 	=>
+									if(cal_cnt = 1) then					--BLUE startup frame
+										LED_output <= "111";
+										cal_cnt <= cal_cnt + 1;	
+										DATA_OUT <= "00110";
+									elsif(cal_cnt = 0) then
+										LED_output <= "011";
+										cal_cnt <= cal_cnt + 1;
+										DATA_OUT <= "00101";
+									else
+										LED_output <= "111";	
+										startup_frame <= 0;
+										cal_cnt <= 0;
+										DATA_OUT <= "00110";	
+									end if;
+								when others =>							-- if calibration mode is set to run and the start up frame is outside of the 3 calibration frames
+									startup_frame <= 0;					-- then set startup mode to known calibration frame start
 									cal_cnt <= 0;
-									DATA_OUT <= "00110";	
-								end if;
-								
+									
+							end case;
 							
-							when others =>
-								Calibration <= '0';
-								case LED_output is
+						elsif (Button_comp = "010") then
+							
+							case LED_output is
 									when "110" =>
 										LED_output <= "101";
 										DATA_OUT <= "01000";
@@ -200,12 +198,12 @@ architecture hello_world_arch of hello_world is
 									when others =>
 										LED_output <= "111";
 										DATA_OUT <= "01010";
---								LED_BUFFER    <= LED_output(2);
---								LED_output(2) <= LED_output(1);
---								LED_output(1) <= LED_output(0);
---								LED_output(0) <= LED_BUFFER;
-								end case;						
-						end case;
+							end case;
+						else
+							LED_output <= "111";
+							DATA_OUT <= "01010";
+						end if;	
+
 					elsif (DATA_BUFFER = '1' and cnt >250000) then
 					
 						NEW_FRAME <= '0';

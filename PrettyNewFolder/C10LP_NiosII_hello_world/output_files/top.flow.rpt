@@ -1,5 +1,5 @@
 Flow report for top
-Tue Mar 31 08:21:50 2020
+Wed Apr 01 14:22:13 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,17 +40,17 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Mar 31 08:21:50 2020       ;
+; Flow Status                        ; Successful - Wed Apr 01 14:22:13 2020       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; hello_world                                 ;
 ; Family                             ; Cyclone 10 LP                               ;
 ; Device                             ; 10CL025YU256I7G                             ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 2,607 / 24,624 ( 11 % )                     ;
-;     Total combinational functions  ; 2,359 / 24,624 ( 10 % )                     ;
-;     Dedicated logic registers      ; 1,530 / 24,624 ( 6 % )                      ;
-; Total registers                    ; 1530                                        ;
+; Total logic elements               ; 2,611 / 24,624 ( 11 % )                     ;
+;     Total combinational functions  ; 2,353 / 24,624 ( 10 % )                     ;
+;     Dedicated logic registers      ; 1,529 / 24,624 ( 6 % )                      ;
+; Total registers                    ; 1529                                        ;
 ; Total pins                         ; 19 / 151 ( 13 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 164,864 / 608,256 ( 27 % )                  ;
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/31/2020 08:20:20 ;
+; Start date & time ; 04/01/2020 14:20:55 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top                 ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+--------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                                        ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+--------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 247207020670968.158566442023356                              ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 247207020670968.158577245513488                              ; --            ; --          ; --             ;
 ; EDA_ENABLE_GLITCH_FILTERING         ; On                                                           ; --            ; --          ; eda_simulation ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; On                                                           ; --            ; --          ; eda_simulation ;
 ; EDA_MAP_ILLEGAL_CHARACTERS          ; On                                                           ; --            ; --          ; eda_simulation ;
@@ -106,12 +106,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:58     ; 1.0                     ; 4975 MB             ; 00:01:31                           ;
-; Fitter               ; 00:00:13     ; 1.4                     ; 6186 MB             ; 00:00:20                           ;
+; Analysis & Synthesis ; 00:00:51     ; 1.0                     ; 4975 MB             ; 00:01:33                           ;
+; Fitter               ; 00:00:11     ; 1.5                     ; 6186 MB             ; 00:00:21                           ;
 ; Assembler            ; 00:00:02     ; 1.0                     ; 4695 MB             ; 00:00:02                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.5                     ; 4910 MB             ; 00:00:04                           ;
-; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4658 MB             ; 00:00:03                           ;
-; Total                ; 00:01:21     ; --                      ; --                  ; 00:02:00                           ;
+; Timing Analyzer      ; 00:00:03     ; 1.5                     ; 4908 MB             ; 00:00:04                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 4657 MB             ; 00:00:03                           ;
+; Total                ; 00:01:10     ; --                      ; --                  ; 00:02:03                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
