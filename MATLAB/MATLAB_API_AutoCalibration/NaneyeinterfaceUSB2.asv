@@ -527,7 +527,7 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 
+global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff GreenOn GreenOff BlueOn BlueOff lh2 
 
 keeprunning=true;
 choice=get(handles.calibratebutton,'string');
@@ -537,7 +537,8 @@ while keeprunning
     switch choice
         
        case 'Calibrate'
-            writememory(FPGA,16384,1);
+            writememory(FPGA,16384,0);
+            writememory(FPGA,16384,7);
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
@@ -550,10 +551,10 @@ while keeprunning
             disp("Calibration finished"); %I could put this at the actual end?
             naneye1.StopCapture();
             delete(lh2);
-            writememory(FPGA,16384,0);
+            writememory(FPGA,16384,7);
             CAL = double(zeros(187500,3));
             for n=1:62500
-                CAL(3*n-2:3*n,:)=inv([RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)]);
+                CAL(3*n-2:3*n,:)=inv([RedOn(n) ZeroCal(n) BlueOff(n); RedOff(n) GreenOn(n) ZeroCal(n); ZeroCal(n) GreenOff(n) BlueOn(n)]);
             end
             caliRed   = CAL(1:3:end,:);
             caliGreen = CAL(2:3:end,:);

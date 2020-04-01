@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="nios_setup" kind="nios_setup" version="1.0" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2020.04.01.15:37:55 -->
+ <!-- 2020.04.01.15:41:04 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1585777075</value>
+  <value>1585777263</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -1631,38 +1631,30 @@ parameters are a RESULT of the module parameters. -->
  </module>
  <module
    name="MATLAB_as_AXI_Master_0"
-   kind="MATLAB_as_AXI_Master"
-   version="1.1"
+   kind="missing_module"
+   version="1.0"
    path="MATLAB_as_AXI_Master_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
-  <parameter name="JTAG_ID">
-   <type>int</type>
-   <value>56</value>
+  <parameter name="moduleKind">
+   <type>java.lang.String</type>
+   <value>MATLAB_as_AXI_Master</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <parameter name="ID_WIDTH">
-   <type>int</type>
-   <value>1</value>
+  <parameter name="moduleParameters">
+   <type>java.util.Map</type>
+   <value>{JTAG_ID=56, ID_WIDTH=1, AXI_DATA_WIDTH=64, AXI_ADDR_WIDTH=32}</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>true</visible>
+   <visible>false</visible>
    <valid>true</valid>
   </parameter>
-  <parameter name="AXI_DATA_WIDTH">
-   <type>int</type>
-   <value>64</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="AXI_ADDR_WIDTH">
-   <type>int</type>
-   <value>32</value>
+  <parameter name="moduleVersion">
+   <type>com.altera.librarianinterfaces.IVersion</type>
+   <value>1.1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1684,19 +1676,62 @@ the requested settings for a module instance. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <interface name="axm_m0" kind="altera_axi4_master" version="18.1">
+  <interface name="axm_m0" kind="missing" version="18.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
-   <parameter name="associatedClock">
+   <parameter name="missingConnectionPointName">
     <type>java.lang.String</type>
-    <value>aclk</value>
+    <value>axm_m0</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
-   <parameter name="associatedReset">
+   <parameter name="missingModule">
+    <type>com.altera.entityinterfaces.IModule</type>
+    <value><![CDATA[MissingModule MATLAB_as_AXI_Master_0 missing_module 1.0 params[3]
+   MissingConnectionPoint MATLAB_as_AXI_Master_0.axm_m0 [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""   MissingConnectionPoint MATLAB_as_AXI_Master_0.aresetn [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""   MissingConnectionPoint MATLAB_as_AXI_Master_0.aclk [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""]]></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="missingModuleName">
+    <type>java.lang.String</type>
+    <value>MATLAB_as_AXI_Master_0</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>avalon</type>
+   <isStart>false</isStart>
+  </interface>
+  <interface name="aresetn" kind="missing" version="18.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="missingConnectionPointName">
     <type>java.lang.String</type>
     <value>aresetn</value>
     <derived>false</derived>
@@ -1704,395 +1739,21 @@ parameters are a RESULT of the module parameters. -->
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
-   <parameter name="trustzoneAware">
-    <type>boolean</type>
-    <value>true</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumOutstandingReads">
-    <type>java.lang.Integer</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumOutstandingWrites">
-    <type>java.lang.Integer</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maximumOutstandingTransactions">
-    <type>java.lang.Integer</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readIssuingCapability">
-    <type>java.lang.Integer</type>
-    <value>1</value>
+   <parameter name="missingModule">
+    <type>com.altera.entityinterfaces.IModule</type>
+    <value><![CDATA[MissingModule MATLAB_as_AXI_Master_0 missing_module 1.0 params[3]
+   MissingConnectionPoint MATLAB_as_AXI_Master_0.axm_m0 [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""   MissingConnectionPoint MATLAB_as_AXI_Master_0.aresetn [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""   MissingConnectionPoint MATLAB_as_AXI_Master_0.aclk [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""]]></value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
     <valid>true</valid>
    </parameter>
-   <parameter name="writeIssuingCapability">
-    <type>java.lang.Integer</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="combinedIssuingCapability">
-    <type>java.lang.Integer</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
+   <parameter name="missingModuleName">
     <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>axi4</type>
-   <isStart>true</isStart>
-   <port>
-    <name>axi4m_awaddr</name>
-    <direction>Output</direction>
-    <width>32</width>
-    <role>awaddr</role>
-   </port>
-   <port>
-    <name>axi4m_awprot</name>
-    <direction>Output</direction>
-    <width>3</width>
-    <role>awprot</role>
-   </port>
-   <port>
-    <name>axi4m_awvalid</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>awvalid</role>
-   </port>
-   <port>
-    <name>axi4m_awready</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>awready</role>
-   </port>
-   <port>
-    <name>axi4m_wdata</name>
-    <direction>Output</direction>
-    <width>64</width>
-    <role>wdata</role>
-   </port>
-   <port>
-    <name>axi4m_wlast</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>wlast</role>
-   </port>
-   <port>
-    <name>axi4m_wvalid</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>wvalid</role>
-   </port>
-   <port>
-    <name>axi4m_wready</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>wready</role>
-   </port>
-   <port>
-    <name>axi4m_bvalid</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>bvalid</role>
-   </port>
-   <port>
-    <name>axi4m_bready</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>bready</role>
-   </port>
-   <port>
-    <name>axi4m_araddr</name>
-    <direction>Output</direction>
-    <width>32</width>
-    <role>araddr</role>
-   </port>
-   <port>
-    <name>axi4m_arprot</name>
-    <direction>Output</direction>
-    <width>3</width>
-    <role>arprot</role>
-   </port>
-   <port>
-    <name>axi4m_arvalid</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>arvalid</role>
-   </port>
-   <port>
-    <name>axi4m_arready</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>arready</role>
-   </port>
-   <port>
-    <name>axi4m_rdata</name>
-    <direction>Input</direction>
-    <width>64</width>
-    <role>rdata</role>
-   </port>
-   <port>
-    <name>axi4m_rvalid</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>rvalid</role>
-   </port>
-   <port>
-    <name>axi4m_rready</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>rready</role>
-   </port>
-   <port>
-    <name>axi4m_arburst</name>
-    <direction>Output</direction>
-    <width>2</width>
-    <role>arburst</role>
-   </port>
-   <port>
-    <name>axi4m_arcache</name>
-    <direction>Output</direction>
-    <width>4</width>
-    <role>arcache</role>
-   </port>
-   <port>
-    <name>axi4m_arlen</name>
-    <direction>Output</direction>
-    <width>8</width>
-    <role>arlen</role>
-   </port>
-   <port>
-    <name>axi4m_arlock</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>arlock</role>
-   </port>
-   <port>
-    <name>axi4m_arqos</name>
-    <direction>Output</direction>
-    <width>4</width>
-    <role>arqos</role>
-   </port>
-   <port>
-    <name>axi4m_arsize</name>
-    <direction>Output</direction>
-    <width>3</width>
-    <role>arsize</role>
-   </port>
-   <port>
-    <name>axi4m_awburst</name>
-    <direction>Output</direction>
-    <width>2</width>
-    <role>awburst</role>
-   </port>
-   <port>
-    <name>axi4m_awcache</name>
-    <direction>Output</direction>
-    <width>4</width>
-    <role>awcache</role>
-   </port>
-   <port>
-    <name>axi4m_awid</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>awid</role>
-   </port>
-   <port>
-    <name>axi4m_awlen</name>
-    <direction>Output</direction>
-    <width>8</width>
-    <role>awlen</role>
-   </port>
-   <port>
-    <name>axi4m_awlock</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>awlock</role>
-   </port>
-   <port>
-    <name>axi4m_awqos</name>
-    <direction>Output</direction>
-    <width>4</width>
-    <role>awqos</role>
-   </port>
-   <port>
-    <name>axi4m_awsize</name>
-    <direction>Output</direction>
-    <width>3</width>
-    <role>awsize</role>
-   </port>
-   <port>
-    <name>axi4m_bresp</name>
-    <direction>Input</direction>
-    <width>2</width>
-    <role>bresp</role>
-   </port>
-   <port>
-    <name>axi4m_rid</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>rid</role>
-   </port>
-   <port>
-    <name>axi4m_rlast</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>rlast</role>
-   </port>
-   <port>
-    <name>axi4m_rresp</name>
-    <direction>Input</direction>
-    <width>2</width>
-    <role>rresp</role>
-   </port>
-   <port>
-    <name>axi4m_wstrb</name>
-    <direction>Output</direction>
-    <width>8</width>
-    <role>wstrb</role>
-   </port>
-   <port>
-    <name>axi4m_arid</name>
-    <direction>Output</direction>
-    <width>1</width>
-    <role>arid</role>
-   </port>
-   <port>
-    <name>axi4m_bid</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>bid</role>
-   </port>
-   <memoryBlock>
-    <isBridge>false</isBridge>
-    <moduleName>jtag_uart</moduleName>
-    <slaveName>avalon_jtag_slave</slaveName>
-    <name>jtag_uart.avalon_jtag_slave</name>
-    <baseAddress>16416</baseAddress>
-    <span>8</span>
-   </memoryBlock>
-   <memoryBlock>
-    <isBridge>false</isBridge>
-    <moduleName>onchip_memory</moduleName>
-    <slaveName>s1</slaveName>
-    <name>onchip_memory.s1</name>
-    <baseAddress>0</baseAddress>
-    <span>16384</span>
-   </memoryBlock>
-   <memoryBlock>
-    <isBridge>false</isBridge>
-    <moduleName>DATA_OUT</moduleName>
-    <slaveName>s1</slaveName>
-    <name>DATA_OUT.s1</name>
-    <baseAddress>16400</baseAddress>
-    <span>16</span>
-   </memoryBlock>
-   <memoryBlock>
-    <isBridge>false</isBridge>
-    <moduleName>Button</moduleName>
-    <slaveName>s1</slaveName>
-    <name>Button.s1</name>
-    <baseAddress>16384</baseAddress>
-    <span>16</span>
-   </memoryBlock>
-  </interface>
-  <interface name="aclk" kind="clock_sink" version="18.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="externallyDriven">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="ptfSchematicName">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>clock</type>
-   <isStart>false</isStart>
-   <port>
-    <name>aclk</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>clk</role>
-   </port>
-  </interface>
-  <interface name="aresetn" kind="reset_sink" version="18.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value>aclk</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="synchronousEdges">
-    <type>com.altera.sopcmodel.reset.Reset$Edges</type>
-    <value>DEASSERT</value>
+    <value>MATLAB_as_AXI_Master_0</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -2116,12 +1777,57 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <type>reset</type>
    <isStart>false</isStart>
-   <port>
-    <name>aresetn</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>reset_n</role>
-   </port>
+  </interface>
+  <interface name="aclk" kind="missing" version="18.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="missingConnectionPointName">
+    <type>java.lang.String</type>
+    <value>aclk</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="missingModule">
+    <type>com.altera.entityinterfaces.IModule</type>
+    <value><![CDATA[MissingModule MATLAB_as_AXI_Master_0 missing_module 1.0 params[3]
+   MissingConnectionPoint MATLAB_as_AXI_Master_0.axm_m0 [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""   MissingConnectionPoint MATLAB_as_AXI_Master_0.aresetn [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""   MissingConnectionPoint MATLAB_as_AXI_Master_0.aclk [1]
+       owner = "missing_module "MATLAB_as_AXI_Master_0""]]></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="missingModuleName">
+    <type>java.lang.String</type>
+    <value>MATLAB_as_AXI_Master_0</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>clock</type>
+   <isStart>false</isStart>
   </interface>
  </module>
  <module name="clk_0" kind="clock_source" version="18.1" path="clk_0">
@@ -2359,12 +2065,6 @@ parameters are a RESULT of the module parameters. -->
     <width>1</width>
     <role>clk</role>
    </port>
-   <clockDomainMember>
-    <isBridge>false</isBridge>
-    <moduleName>MATLAB_as_AXI_Master_0</moduleName>
-    <slaveName>aclk</slaveName>
-    <name>MATLAB_as_AXI_Master_0.aclk</name>
-   </clockDomainMember>
    <clockDomainMember>
     <isBridge>false</isBridge>
     <moduleName>Button</moduleName>
@@ -4550,7 +4250,7 @@ parameters are a RESULT of the module parameters. -->
   <version>18.1</version>
  </plugin>
  <plugin>
-  <instanceCount>5</instanceCount>
+  <instanceCount>4</instanceCount>
   <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -4558,7 +4258,7 @@ parameters are a RESULT of the module parameters. -->
   <version>18.1</version>
  </plugin>
  <plugin>
-  <instanceCount>5</instanceCount>
+  <instanceCount>4</instanceCount>
   <name>reset_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -4583,18 +4283,18 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>MATLAB_as_AXI_Master</name>
+  <name>missing_module</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>MATLAB as AXI Master</displayName>
-  <version>1.1</version>
+  <displayName>Missing Module</displayName>
+  <version>1.0</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_axi4_master</name>
+  <instanceCount>3</instanceCount>
+  <name>missing</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>AXI4 Master</displayName>
+  <displayName>Missing</displayName>
   <version>18.1</version>
  </plugin>
  <plugin>

@@ -6,7 +6,7 @@ global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder recor
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
 input = readmemory(FPGA,16400,1);
 
-if (input == 7) %Blue off, red on
+if (input == 10) %Blue off, red on
         A = hbytes;
         ABC = cat(2,A',B',C'); 
         Red = sum(ABC.*caliRed,2);
@@ -16,7 +16,7 @@ if (input == 7) %Blue off, red on
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
         
-elseif (input == 8) %red off, green on
+elseif (input == 11) %red off, green on
         B = hbytes;
         ABC = cat(2,A',B',C'); 
         Red = sum(ABC.*caliRed,2);
@@ -26,7 +26,7 @@ elseif (input == 8) %red off, green on
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
         
-elseif (input == 9) %green off, blue on
+elseif (input == 12) %green off, blue on
         C = hbytes;
         ABC = cat(2,A',B',C');
         Red = sum(ABC.*caliRed,2);
@@ -35,7 +35,8 @@ elseif (input == 9) %green off, blue on
             g = reshape(Green(), [w,h]);
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
-
+else
+    disp("Something's wrong!");
 end
 
 if frameOrder == 1
