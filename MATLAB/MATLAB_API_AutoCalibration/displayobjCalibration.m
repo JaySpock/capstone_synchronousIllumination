@@ -11,7 +11,7 @@ input = readmemory(FPGA,16400,1);
 if (input == 0) %all leds off
     ZeroCal = hbytes;
 elseif (input == 1) %red on
-    RedOn = hybtes;
+    RedOn = hbytes;
 elseif (input == 2) %red off
     RedOff = hbytes;
 elseif (input == 3) %green on
