@@ -226,7 +226,11 @@ while keep_running
             image(Bimg); title("B");
             nexttile
             image(Cimg); title("C");
-           
+            
+%             save('A_NormalRun.mat','Aimg');
+%             save('B_NormalRun.mat','Bimg');
+%             save('C_NormalRun.mat','Cimg');
+
             choice=set(handles.startbuttom,'string','Start');
             keep_running = false;
     end
@@ -563,6 +567,7 @@ while keeprunning
             writememory(FPGA,16384,0);
             CAL = double(zeros(187500,3));
             CALinv = double(zeros(187500,3));
+            
             for n=1:62500
                 CAL(3*n-2:3*n,:)=[RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)];
                 CALinv(3*n-2:3*n,:)=inv([RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)]);
@@ -572,6 +577,7 @@ while keeprunning
                 else
                 end
             end
+            
             caliRed   = CALinv(1:3:end,:);
             caliGreen = CALinv(2:3:end,:);
             caliBlue  = CALinv(3:3:end,:);
@@ -596,7 +602,7 @@ while keeprunning
             image(BlueOffimg); title("Blue Off");
             nexttile
             image(BlueZeroimg); title("After Blue Off");
-            pause(0.03);
+            
 %             save('RedOn.mat','RedOnimg');
 %             save('RedOff.mat','RedOffimg');
 %             save('RedZero.mat','RedZeroimg');
@@ -606,6 +612,7 @@ while keeprunning
 %             save('BlueOn.mat','BlueOnimg');
 %             save('BlueOff.mat','BlueOffimg');
 %             save('BlueZero.mat','BlueZeroimg');
+
             choice=set(handles.calibratebutton,'string','Calibrate');
             keeprunning = false;
             

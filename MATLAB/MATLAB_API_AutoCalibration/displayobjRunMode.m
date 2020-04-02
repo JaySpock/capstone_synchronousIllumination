@@ -4,9 +4,9 @@ function displayobjRunMode(inbytes,handles)
 global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
-pause(0.004);
+pause(0.0038);
 input = readmemory(FPGA,16400,1);
-pause(0.004);
+pause(0.0038);
 if (input == 10) %Blue off, red on
         A = hbytes;
         Aimg = reshape(hbytes(), [250,250]).';
