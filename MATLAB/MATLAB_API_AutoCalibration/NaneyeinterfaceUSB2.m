@@ -527,7 +527,7 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 
+global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
 
 keeprunning=true;
 choice=get(handles.calibratebutton,'string');
@@ -565,6 +565,31 @@ while keeprunning
             caliRed   = CALinv(1:3:end,:);
             caliGreen = CALinv(2:3:end,:);
             caliBlue  = CALinv(3:3:end,:);
+            
+            tiledlayout('flow');
+            
+            nexttile
+            image(RedOnimg);
+            nexttile
+            image(RedOnimg); title("Red On");
+            nexttile
+            image(RedOffimg); title("Red Off");
+            nexttile
+            image(RedZeroimg); title("After Red Off");
+            nexttile
+            image(GreenOnimg); title("Green On");
+            nexttile
+            image(GreenOffimg); title("Green Off");
+            nexttile
+            image(GreenZeroimg); title("After Green Off");
+            nexttile
+            image(BlueOnimg); title("Blue On");
+            nexttile
+            image(BlueOffimg); title("Blue Off");
+            nexttile
+            image(BlueZeroimg); title("After Blue Off");
+            pause(0.03);
+            
             choice=set(handles.calibratebutton,'string','Calibrate');
             keeprunning = false;
             
