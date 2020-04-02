@@ -1,24 +1,28 @@
 function displayobjRunMode(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector.
-global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b
+global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
+pause(0.004);
 input = readmemory(FPGA,16400,1);
-
+pause(0.004);
 if (input == 10) %Blue off, red on
         A = hbytes;
-        ABC = cat(2,A',B',C'); 
+        Aimg = reshape(hbytes(), [250,250]).';
+        ABC = cat(2,A.',B.',C.'); 
         Red = sum(ABC.*caliRed,2);
             r = reshape(Red(), [w,h]);
         Green = sum(ABC.*caliGreen,2);
             g = reshape(Green(), [w,h]);
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
+
         
 elseif (input == 11) %red off, green on
         B = hbytes;
-        ABC = cat(2,A',B',C'); 
+        Bimg = reshape(hbytes(), [250,250]).';
+        ABC = cat(2,A.',B.',C.'); 
         Red = sum(ABC.*caliRed,2);
             r = reshape(Red(), [w,h]);
         Green = sum(ABC.*caliGreen,2);
@@ -28,7 +32,8 @@ elseif (input == 11) %red off, green on
         
 elseif (input == 12) %green off, blue on
         C = hbytes;
-        ABC = cat(2,A',B',C');
+        Cimg = reshape(hbytes(), [250,250]).';
+        ABC = cat(2,A.',B.',C.');
         Red = sum(ABC.*caliRed,2);
             r = reshape(Red(), [w,h]);
         Green = sum(ABC.*caliGreen,2);
@@ -65,6 +70,8 @@ if record == 1
     writeVideo(v,imgh);
 else
 end
+
+%pause(0.008);
 
 set(handles.image,'CData',imgh);
 fullimage=imgh;

@@ -179,7 +179,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1
+global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -198,7 +198,7 @@ while keep_running
             b = reshape(C(), [250,250]);
             frameOrder = 1;
             record = 2;
-            v = VideoWriter('SecondColorVideoTest.avi','Uncompressed AVI');
+            v = VideoWriter('NewColorVideoTest.avi','Uncompressed AVI');
             writememory(FPGA,16384,2);
             disp("Ready");
             choice=set(handles.startbuttom,'string','Confirm Start');
@@ -217,6 +217,16 @@ while keep_running
             naneye1.StopCapture();
             delete(lh1);
             writememory(FPGA,16384,0);
+            
+            figure;
+            tiledlayout(1,3);
+            nexttile
+            image(Aimg); title("A");
+            nexttile
+            image(Bimg); title("B");
+            nexttile
+            image(Cimg); title("C");
+           
             choice=set(handles.startbuttom,'string','Start');
             keep_running = false;
     end
@@ -566,10 +576,8 @@ while keeprunning
             caliGreen = CALinv(2:3:end,:);
             caliBlue  = CALinv(3:3:end,:);
             
-            tiledlayout('flow');
-            
-            nexttile
-            image(RedOnimg);
+            figure;
+            tiledlayout(3,3);
             nexttile
             image(RedOnimg); title("Red On");
             nexttile
@@ -589,7 +597,15 @@ while keeprunning
             nexttile
             image(BlueZeroimg); title("After Blue Off");
             pause(0.03);
-            
+%             save('RedOn.mat','RedOnimg');
+%             save('RedOff.mat','RedOffimg');
+%             save('RedZero.mat','RedZeroimg');
+%             save('GreenOn.mat','GreenOnimg');
+%             save('GreenOff.mat','GreenOffimg');
+%             save('GreenZero.mat','GreenZeroimg');
+%             save('BlueOn.mat','BlueOnimg');
+%             save('BlueOff.mat','BlueOffimg');
+%             save('BlueZero.mat','BlueZeroimg');
             choice=set(handles.calibratebutton,'string','Calibrate');
             keeprunning = false;
             
