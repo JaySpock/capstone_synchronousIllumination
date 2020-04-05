@@ -3,7 +3,7 @@
     <sld_info hpath="nios_setup:u0" name="u0">
       <assignment_values>
         <assignment_value text="QSYS_NAME nios_setup HAS_SOPCINFO 1 GENERATION_ID 1585522454"/>
-        <assignment_value text="QSYS_NAME nios_setup HAS_SOPCINFO 1 GENERATION_ID 1585778280"/>
+        <assignment_value text="QSYS_NAME nios_setup HAS_SOPCINFO 1 GENERATION_ID 1586116161"/>
       </assignment_values>
     </sld_info>
     <sld_info hpath="sld_hub:auto_hub|alt_sld_fab:\instrumentation_fabric_with_node_gen:instrumentation_fabric" library="alt_sld_fab" name="instrumentation_fabric">

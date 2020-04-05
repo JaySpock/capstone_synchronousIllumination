@@ -1,34 +1,16 @@
 function displayobjRunMode(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector.
-global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v
+global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
+pause(0.0038);
 input = readmemory(FPGA,16400,1);
-
-if (input == 7) %Blue off, red on
+pause(0.0038);
+if (input == 10) %Blue off, red on
         A = hbytes;
-        ABC = cat(2,A',B',C'); 
-        Red = sum(ABC.*caliRed,2);
-            r = reshape(Red(), [w,h]);
-        Green = sum(ABC.*caliGreen,2);
-            g = reshape(Green(), [w,h]);
-        Blue = sum(ABC.*caliBlue,2);
-            b = reshape(Blue(), [w,h]);
-        
-elseif (input == 8) %red off, green on
-        B = hbytes;
-        ABC = cat(2,A',B',C'); 
-        Red = sum(ABC.*caliRed,2);
-            r = reshape(Red(), [w,h]);
-        Green = sum(ABC.*caliGreen,2);
-            g = reshape(Green(), [w,h]);
-        Blue = sum(ABC.*caliBlue,2);
-            b = reshape(Blue(), [w,h]);
-        
-elseif (input == 9) %green off, blue on
-        C = hbytes;
-        ABC = cat(2,A',B',C');
+        Aimg = reshape(hbytes(), [250,250]).';
+        ABC = cat(2,A.',B.',C.'); 
         Red = sum(ABC.*caliRed,2);
             r = reshape(Red(), [w,h]);
         Green = sum(ABC.*caliGreen,2);
@@ -36,6 +18,32 @@ elseif (input == 9) %green off, blue on
         Blue = sum(ABC.*caliBlue,2);
             b = reshape(Blue(), [w,h]);
 
+        
+elseif (input == 11) %red off, green on
+        B = hbytes;
+        Bimg = reshape(hbytes(), [250,250]).';
+        ABC = cat(2,A.',B.',C.'); 
+        Red = sum(ABC.*caliRed,2);
+            r = reshape(Red(), [w,h]);
+        Green = sum(ABC.*caliGreen,2);
+            g = reshape(Green(), [w,h]);
+        Blue = sum(ABC.*caliBlue,2);
+            b = reshape(Blue(), [w,h]);
+        
+elseif (input == 12) %green off, blue on
+        C = hbytes;
+        Cimg = reshape(hbytes(), [250,250]).';
+        ABC = cat(2,A.',B.',C.');
+        Red = sum(ABC.*caliRed,2);
+            r = reshape(Red(), [w,h]);
+        Green = sum(ABC.*caliGreen,2);
+            g = reshape(Green(), [w,h]);
+        Blue = sum(ABC.*caliBlue,2);
+            b = reshape(Blue(), [w,h]);
+elseif (input == 13)
+    disp("Error in FPGA code");
+else
+    disp("Something's wrong");
 end
 
 if frameOrder == 1
@@ -62,6 +70,8 @@ if record == 1
     writeVideo(v,imgh);
 else
 end
+
+%pause(0.008);
 
 set(handles.image,'CData',imgh);
 fullimage=imgh;

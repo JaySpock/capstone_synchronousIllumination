@@ -49,6 +49,7 @@ global lock naneye1 w h colorlist BW FPGA
 clear global a; %clears the previous connection so a new updated Arduino connection can be established
 hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18.1\quartus\bin64\quartus.exe');
 FPGA = aximaster('Intel');
+writememory(FPGA,16384,0);
 
 % The 'lock' variable is used to control if a histogram is to be displayed.
 % 'lock = -1' ensures that no histogram was requested and 'lock = 3' enables the displaying of the histogram. 
@@ -178,7 +179,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1
+global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -197,8 +198,8 @@ while keep_running
             b = reshape(C(), [250,250]);
             frameOrder = 1;
             record = 2;
-            v = VideoWriter('newfile.avi','Motion JPEG AVI');
-            writememory(FPGA,16384,7);
+            v = VideoWriter('NewColorVideoTest.avi','Uncompressed AVI');
+            writememory(FPGA,16384,2);
             disp("Ready");
             choice=set(handles.startbuttom,'string','Confirm Start');
             keep_running = false;
@@ -215,6 +216,21 @@ while keep_running
         case 'Stop'
             naneye1.StopCapture();
             delete(lh1);
+            writememory(FPGA,16384,0);
+            
+            figure;
+            tiledlayout(1,3);
+            nexttile
+            image(Aimg); title("A");
+            nexttile
+            image(Bimg); title("B");
+            nexttile
+            image(Cimg); title("C");
+            
+%             save('A_NormalRun.mat','Aimg');
+%             save('B_NormalRun.mat','Bimg');
+%             save('C_NormalRun.mat','Cimg');
+
             choice=set(handles.startbuttom,'string','Start');
             keep_running = false;
     end
@@ -525,7 +541,7 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff GreenOn GreenOff BlueOn BlueOff lh2 
+global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
 
 keeprunning=true;
 choice=get(handles.calibratebutton,'string');
@@ -535,8 +551,7 @@ while keeprunning
     switch choice
         
        case 'Calibrate'
-            writememory(FPGA,16384,0);
-            writememory(FPGA,16384,7);
+            writememory(FPGA,16384,1);
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
@@ -549,14 +564,55 @@ while keeprunning
             disp("Calibration finished"); %I could put this at the actual end?
             naneye1.StopCapture();
             delete(lh2);
-            writememory(FPGA,16384,7);
+            writememory(FPGA,16384,0);
             CAL = double(zeros(187500,3));
+            CALinv = double(zeros(187500,3));
+            
             for n=1:62500
-                CAL(3*n-2:3*n,:)=inv([RedOn(n) ZeroCal(n) BlueOff(n); RedOff(n) GreenOn(n) ZeroCal(n); ZeroCal(n) GreenOff(n) BlueOn(n)]);
+                CAL(3*n-2:3*n,:)=[RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)];
+                CALinv(3*n-2:3*n,:)=inv([RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)]);
+                detCAL(3*n-2:3*n,:) = det(CAL(3*n-2:3*n,:));
+                if detCAL(3*n-2:3*n,:) == 0
+                    CALinv(3*n-2:3*n,:) = double(zeros(3,3));
+                else
+                end
             end
-            caliRed   = CAL(1:3:end,:);
-            caliGreen = CAL(2:3:end,:);
-            caliBlue  = CAL(3:3:end,:);
+            
+            caliRed   = CALinv(1:3:end,:);
+            caliGreen = CALinv(2:3:end,:);
+            caliBlue  = CALinv(3:3:end,:);
+            
+            figure;
+            tiledlayout(3,3);
+            nexttile
+            image(RedOnimg); title("Red On");
+            nexttile
+            image(RedOffimg); title("Red Off");
+            nexttile
+            image(RedZeroimg); title("After Red Off");
+            nexttile
+            image(GreenOnimg); title("Green On");
+            nexttile
+            image(GreenOffimg); title("Green Off");
+            nexttile
+            image(GreenZeroimg); title("After Green Off");
+            nexttile
+            image(BlueOnimg); title("Blue On");
+            nexttile
+            image(BlueOffimg); title("Blue Off");
+            nexttile
+            image(BlueZeroimg); title("After Blue Off");
+            
+%             save('RedOn.mat','RedOnimg');
+%             save('RedOff.mat','RedOffimg');
+%             save('RedZero.mat','RedZeroimg');
+%             save('GreenOn.mat','GreenOnimg');
+%             save('GreenOff.mat','GreenOffimg');
+%             save('GreenZero.mat','GreenZeroimg');
+%             save('BlueOn.mat','BlueOnimg');
+%             save('BlueOff.mat','BlueOffimg');
+%             save('BlueZero.mat','BlueZeroimg');
+
             choice=set(handles.calibratebutton,'string','Calibrate');
             keeprunning = false;
             
