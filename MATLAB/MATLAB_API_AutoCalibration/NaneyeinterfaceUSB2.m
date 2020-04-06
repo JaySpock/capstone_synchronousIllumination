@@ -179,7 +179,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg
+global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg nextFrame count
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -196,6 +196,8 @@ while keep_running
             r = reshape(A(), [250,250]);
             g = reshape(B(), [250,250]);
             b = reshape(C(), [250,250]);
+            nextFrame = 'One';
+            count = 'A';
             frameOrder = 1;
             record = 2;
             v = VideoWriter('NewColorVideoTest.avi','Uncompressed AVI');

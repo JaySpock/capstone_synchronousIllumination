@@ -5,7 +5,7 @@ global fullimage lock FPGA ZeroCal RedOn RedOff RedZero GreenOn GreenOff GreenZe
 
 hbytes=double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
-pause(0.005);
+pause(0.002);
 input = readmemory(FPGA,16400,1);
 %pause(0.005);
 if (input == 0) %all leds off
