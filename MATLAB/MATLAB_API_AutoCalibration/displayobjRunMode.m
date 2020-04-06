@@ -2,10 +2,10 @@ function displayobjRunMode(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector.
 global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg input oldput
-tic
+
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
-pause(0.0075);
+pause(0.007);
 input = readmemory(FPGA,16400,1);
 
 % while input == oldput
@@ -70,6 +70,6 @@ else
 end
 
 %input = oldput;
-toc
+
 
 end

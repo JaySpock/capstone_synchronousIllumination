@@ -1,15 +1,19 @@
-function displayobjCalibration(inbytes,handles)
+function displayobjCalibrationtesting(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
-% the sensor and reshapes them in a 3 dimensions vector. 
+% the sensor and reshapes them in a 3 dimensions vector.
 global fullimage lock FPGA previousin ZeroCal RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
 
 hbytes=double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
 %pause(0.003);
-input = readmemory(FPGA,16400,1);
 
-while (input == previousin)
+while true
     input = readmemory(FPGA,16400,1);
+    pause(0.002);
+    if (input ~= previousin)
+        previousin = input;
+        break;
+    end       
 end
 
 %pause(0.005);
@@ -75,5 +79,5 @@ if lock == 3
     setgraph(handles,handles.axes2);
 else
 end
-previousin = input;
+
 end

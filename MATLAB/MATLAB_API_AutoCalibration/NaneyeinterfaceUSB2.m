@@ -179,7 +179,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg nextFrame count
+global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg nextFrame count oldput
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -207,6 +207,7 @@ while keep_running
             keep_running = false;
             
         case 'Confirm Start'
+            oldput = readmemory(FPGA,16400,1);
             axes(handles.axes1);
             handles.image=image;
             axis off;
@@ -543,7 +544,7 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keeprunning FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
+global naneye1 keeprunning previousin FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
 
 keeprunning=true;
 choice=get(handles.calibratebutton,'string');
@@ -554,10 +555,11 @@ while keeprunning
         
        case 'Calibrate'
             writememory(FPGA,16384,1);
+            previousin = readmemory(FPGA,16400,1);
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
-            lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjCalibration(e,handles));
+            lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjCalibrationtesting(e,handles));
             naneye1.StartCapture();
             choice=set(handles.calibratebutton,'string','End Calibration');
             keeprunning = false;
