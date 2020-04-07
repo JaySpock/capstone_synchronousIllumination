@@ -5,14 +5,12 @@ global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder recor
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
+different = find(img ~= previmg);
 
-if (isequal(img,previmg))
-%if (abs(img-previmg) <= ( 0.08*max(abs(img),abs(previmg)) + eps))
-%if (mean(img~=previmg) < 0.25)
-    pause(0.0001);
-else
+if (size(different,1) > 40000)
+
     previmg = img;
-
+    
     while true
         input = readmemory(FPGA,16400,1);
         pause(0.0001);
@@ -21,21 +19,59 @@ else
             break;
         end       
     end
+    
+%     while true
+%         hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
+%         img = reshape(hbytes(), [250,250]).';
+%         different = find(img ~= previmg);
+%         pause(0.0001);
+%         if (size(different,1) >= 40000)
+%             previmg = img;
+%             break;
+%         end
+%     end   
 
-    if (input == 10) %Blue off, red on
+% if (size(different,1) < 10000)
+%if (isequal(img,previmg))
+%if (abs(img-previmg) <= ( 0.08*max(abs(img),abs(previmg)) + eps))
+%if (mean(img~=previmg) < 0.25)
+%     pause(0.001);
+% elseif (size(different,1) >= 10000)
+%    previmg = img;
+
+
+
+    switch input
+        case 10 %Blue off, red on
             A = hbytes;
             Aimg = img;
-    elseif (input == 11) %red off, green on
+        case 11 %red off, green on
             B = hbytes;
             Bimg = img;
-    elseif (input == 12) %green off, blue on
+        case 12 %green off, blue on
             C = hbytes;
             Cimg = img;
-    elseif (input == 13)
-        disp("Error in FPGA code");
-    else
-        disp("Something's wrong");
+        case 13
+            disp("Error in FPGA code");
+        otherwise
+            disp("Something's wrong");
     end
+   
+    
+%     if (input == 10) %Blue off, red on
+%             A = hbytes;
+%             Aimg = imgg;
+%     elseif (input == 11) %red off, green on
+%             B = hbytes;
+%             Bimg = imgg;
+%     elseif (input == 12) %green off, blue on
+%             C = hbytes;
+%             Cimg = imgg;
+%     elseif (input == 13)
+%         disp("Error in FPGA code");
+%     else
+%         disp("Something's wrong");
+%     end
 
     ABC = cat(2,A.',B.',C.');
     Red = sum(ABC.*caliRed,2);
@@ -53,10 +89,8 @@ else
         imgh = cat(3, b,r,g);
     end
 
-    idmax = find(imgh > 1);
-    idmin = find(imgh < 0);
-    imgh(idmax) = 1;
-    imgh(idmin) = 0;
+    imgh(imgh > 1) = 1;
+    imgh(imgh < 0) = 0;
 
     if record == 1
         writeVideo(v,imgh);
@@ -71,5 +105,7 @@ else
         setgraph(handles,handles.axes2);
     else  
     end
-
+else
+    pause(0.001);
+end
 end

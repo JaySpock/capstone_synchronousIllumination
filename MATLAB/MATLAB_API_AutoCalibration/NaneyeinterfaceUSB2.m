@@ -197,7 +197,7 @@ while keep_running
             g = reshape(B(), [250,250]);
             b = reshape(C(), [250,250]);
             nextFrame = 'One';
-            previmg = zeros(250,250);
+            previmg = double(zeros(250,250));
             count = 'A';
             frameOrder = 1;
             record = 2;
@@ -213,7 +213,7 @@ while keep_running
             handles.image=image;
             axis off;
             lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjRunMode(e,handles));
-            naneye1.StartCapture();
+            naneye1.StartCapture();            
             choice=set(handles.startbuttom,'string','Stop');
             keep_running = false;
         

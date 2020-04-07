@@ -5,54 +5,92 @@ global fullimage lock FPGA previousin previousimg ZeroCal RedOn RedOff RedZero G
 
 hbytes=double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
+different = find(img ~= previousimg);
 
-if (isequal(img,previousimg))
-else
+if (size(different,1) > 40000)
+
     previousimg = img;
     
     while true
         input = readmemory(FPGA,16400,1);
-        pause(0.002);
+        pause(0.0001);
         if (input ~= previousin)
             previousin = input;
             break;
         end       
     end
 
-    if (input == 0) %all leds off
+    switch input
+        case 0 %all leds off
         ZeroCal = hbytes;
-    elseif (input == 1) %red on
+        case 1 %red on
         RedOn = hbytes;
         RedOnimg = img;
-    elseif (input == 2) %red off
+        case 2 %red off
         RedOff = hbytes;
         RedOffimg = img;
-    elseif (input == 3) %red staying off
+        case 3 %red staying off
         RedZero = hbytes;
         RedZeroimg = img;
-    elseif (input == 4) %green on
+        case 4 %green on
         GreenOn = hbytes;
         GreenOnimg = img;
-    elseif (input == 5) %green off
+        case 5 %green off
         GreenOff = hbytes;
         GreenOffimg = img;
-    elseif (input == 6) %green staying off
+        case 6 %green staying off
         GreenZero = hbytes;
         GreenZeroimg = img;
-    elseif (input == 7) %blue on
+        case 7 %blue on
         BlueOn = hbytes;
         BlueOnimg = img;
-    elseif (input == 8) %blue off
+        case 8 %blue off
         BlueOff = hbytes;
         BlueOffimg = img;
-    elseif (input == 9) %blue staying off
+        case 9 %blue staying off
         BlueZero = hbytes;
         BlueZeroimg = img;
-    elseif (input == 13) %error in FPGA code
+        case 13 %error in FPGA code
         disp("Error in FPGA code");
-    else
+        otherwise
         disp("Not in calibration mode");
-    end
+    end    
+    
+    
+%     if (input == 0) %all leds off
+%         ZeroCal = hbytes;
+%     elseif (input == 1) %red on
+%         RedOn = hbytes;
+%         RedOnimg = img;
+%     elseif (input == 2) %red off
+%         RedOff = hbytes;
+%         RedOffimg = img;
+%     elseif (input == 3) %red staying off
+%         RedZero = hbytes;
+%         RedZeroimg = img;
+%     elseif (input == 4) %green on
+%         GreenOn = hbytes;
+%         GreenOnimg = img;
+%     elseif (input == 5) %green off
+%         GreenOff = hbytes;
+%         GreenOffimg = img;
+%     elseif (input == 6) %green staying off
+%         GreenZero = hbytes;
+%         GreenZeroimg = img;
+%     elseif (input == 7) %blue on
+%         BlueOn = hbytes;
+%         BlueOnimg = img;
+%     elseif (input == 8) %blue off
+%         BlueOff = hbytes;
+%         BlueOffimg = img;
+%     elseif (input == 9) %blue staying off
+%         BlueZero = hbytes;
+%         BlueZeroimg = img;
+%     elseif (input == 13) %error in FPGA code
+%         disp("Error in FPGA code");
+%     else
+%         disp("Not in calibration mode");
+%     end
 
     set(handles.image,'CData',img); 
     fullimage=img;
@@ -61,6 +99,8 @@ else
         setgraph(handles,handles.axes2);
     else
     end
+    
+else
+    pause(0.001);
 end
-
 end

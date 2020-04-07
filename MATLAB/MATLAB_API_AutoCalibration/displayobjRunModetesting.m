@@ -37,6 +37,54 @@ else
         disp("Something's wrong");
     end
 
+%     while run
+%     switch input
+%         case 10 %Blue off, red on
+%             A = hbytes;
+%             if Acount == 1
+%                 Aimg = img;
+%                 Acount = 2;
+%             elseif Acount == 2
+%                 Aimg2 = img;
+%                 Acount = 3;
+%             elseif Acount == 3
+%                 Aimg3 = img;
+%                 Acount = 1;
+%             end
+%             run = false;
+%         case 11 %red off, green on
+%             B = hbytes;
+%             if Bcount == 1
+%                 Bimg = img;
+%                 Bcount = 2;
+%             elseif Bcount == 2
+%                 Bimg2 = img;
+%                 Bcount = 3;
+%             elseif Bcount == 3
+%                 Bimg3 = img;
+%                 Bcount = 1;
+%             end
+%             run = false;
+%         case 12 %green off, blue on
+%             C = hbytes;
+%             if Ccount == 1
+%                 Cimg = img;
+%                 Ccount = 2;
+%             elseif Ccount == 2
+%                 Cimg2 = img;
+%                 Ccount = 3;
+%             elseif Ccount == 3
+%                 Cimg3 = img;
+%                 Ccount = 1;
+%             end
+%             run = false;
+%         case 13
+%         disp("Error in FPGA code");
+%         otherwise
+%         disp("Something's wrong");
+%     end
+% end    
+    
     ABC = cat(2,A.',B.',C.');
     Red = sum(ABC.*caliRed,2);
         r = reshape(Red(), [w,h]);
