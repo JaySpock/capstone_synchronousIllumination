@@ -1,7 +1,7 @@
 function displayobjRunMode(inbytes,handles)
 % Function that displays the sensor's image. First grabs the values from
 % the sensor and reshapes them in a 3 dimensions vector.
-global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg input oldput previmg scalered scalegreen scaleblue
+global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg input oldput previmg
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
@@ -87,11 +87,11 @@ if (size(different,1) > 58500)
 
     ABC = cat(2,A.',B.',C.');
     Red = sum(ABC.*caliRed,2);
-        r = scalegreen*reshape(Red(), [w,h]); %actually green
+        r = 0.6*reshape(Red(), [w,h]); %0.5 makes blue stronger
     Green = sum(ABC.*caliGreen,2);
-        g = scaleblue*reshape(Green(), [w,h]); %actually blue
+        g = 0.6*reshape(Green(), [w,h]); %0.5 makes green stronger
     Blue = sum(ABC.*caliBlue,2);
-        b = scalered*reshape(Blue(), [w,h]); %actually red
+        b = 1.5*reshape(Blue(), [w,h]); %0.5 same?
 
     if frameOrder == 1
         imgh = cat(3, r,g,b);

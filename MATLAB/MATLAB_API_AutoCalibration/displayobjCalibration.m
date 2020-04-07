@@ -7,7 +7,7 @@ hbytes=double(inbytes.GetImageData.GetRawPixels1Byte);
 img = reshape(hbytes(), [250,250]).';
 different = find(img ~= previousimg);
 
-if (size(different,1) > 40000)
+if (size(different,1) > 60000)
 
     previousimg = img;
     

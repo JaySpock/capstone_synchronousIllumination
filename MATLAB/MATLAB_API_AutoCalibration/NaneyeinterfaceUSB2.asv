@@ -20,7 +20,7 @@ function varargout = NaneyeinterfaceUSB2(varargin)
 
 % Edit the above text to modify the response to help NaneyeinterfaceUSB2
 
-% Last Modified by GUIDE v2.5 07-Apr-2020 17:06:22
+% Last Modified by GUIDE v2.5 07-Apr-2020 16:58:13
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -179,7 +179,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg nextFrame count oldput previmg scalered scalegreen scaleblue
+global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg nextFrame count oldput previmg scalered scalegte
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -689,52 +689,6 @@ scalered = get(hObject,'Value')*1.5;
 % --- Executes during object creation, after setting all properties.
 function redslider_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to redslider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
-if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
-end
-
-
-% --- Executes on slider movement.
-function greenslider_Callback(hObject, eventdata, handles)
-% hObject    handle to greenslider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-global scalegreen
-scalegreen = get(hObject,'Value')*1.5;
-
-% --- Executes during object creation, after setting all properties.
-function greenslider_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to greenslider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
-if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
-end
-
-
-% --- Executes on slider movement.
-function blueslider_Callback(hObject, eventdata, handles)
-% hObject    handle to blueslider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-global scaleblue
-scaleblue = get(hObject,'Value')*1.5;
-
-% --- Executes during object creation, after setting all properties.
-function blueslider_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to blueslider (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
