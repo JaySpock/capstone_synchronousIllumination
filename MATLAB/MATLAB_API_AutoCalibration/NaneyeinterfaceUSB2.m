@@ -20,7 +20,7 @@ function varargout = NaneyeinterfaceUSB2(varargin)
 
 % Edit the above text to modify the response to help NaneyeinterfaceUSB2
 
-% Last Modified by GUIDE v2.5 07-Apr-2020 17:06:22
+% Last Modified by GUIDE v2.5 08-Apr-2020 09:54:16
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -560,7 +560,7 @@ while keeprunning
        case 'Calibrate'
             writememory(FPGA,16384,1);
             previousin = readmemory(FPGA,16400,1);
-            previousimg = zeros(250,250);
+            previousimg = zeros(250,250);                   
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
@@ -684,7 +684,7 @@ function redslider_Callback(hObject, eventdata, handles)
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
 global scalered
-scalered = get(hObject,'Value')*1.5;
+scalered = get(hObject,'Value');
 
 % --- Executes during object creation, after setting all properties.
 function redslider_CreateFcn(hObject, eventdata, handles)
@@ -707,7 +707,7 @@ function greenslider_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 global scalegreen
-scalegreen = get(hObject,'Value')*1.5;
+scalegreen = get(hObject,'Value');
 
 % --- Executes during object creation, after setting all properties.
 function greenslider_CreateFcn(hObject, eventdata, handles)
@@ -730,7 +730,7 @@ function blueslider_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 global scaleblue
-scaleblue = get(hObject,'Value')*1.5;
+scaleblue = get(hObject,'Value');
 
 % --- Executes during object creation, after setting all properties.
 function blueslider_CreateFcn(hObject, eventdata, handles)
@@ -742,3 +742,20 @@ function blueslider_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+
+
+% --- Executes on button press in colorscaleresetbutton.
+function colorscaleresetbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to colorscaleresetbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global scalered scalegreen scaleblue
+
+scalered = 1;
+set(handles.redslider, 'Value', 1);
+scalegreen = 1;
+set(handles.greenslider, 'Value', 1);
+scaleblue = 1;
+set(handles.blueslider, 'Value', 1);
+
+guidata(hObject,handles);
