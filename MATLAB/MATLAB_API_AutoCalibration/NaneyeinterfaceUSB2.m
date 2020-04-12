@@ -188,7 +188,7 @@ while keep_running
     
     switch choice
         
-       case 'Start'
+       case 'Prepare to Start'
             disp("Setting up variables, hit Confirm Start when ready");
             A = ones(1,62500);
             B = 2*A;
@@ -238,7 +238,7 @@ while keep_running
 %             save('B_NormalRun.mat','Bimg');
 %             save('C_NormalRun.mat','Cimg');
 
-            choice=set(handles.startbuttom,'string','Start');
+            choice=set(handles.startbuttom,'string','Prepare to Start');
             keep_running = false;
     end
     
@@ -560,30 +560,42 @@ while keeprunning
        case 'Calibrate'
             writememory(FPGA,16384,1);
             previousin = readmemory(FPGA,16400,1);
-            previousimg = zeros(250,250);                   
+            previousimg = zeros(250,250);
+            
+            RedOn = zeros(1,62500);
+            RedOff = zeros(1,62500);
+            RedZero = zeros(1,62500);
+            GreenOn = zeros(1,62500);
+            GreenOff = zeros(1,62500);
+            GreenZero = zeros(1,62500);
+            BlueOn = zeros(1,62500);
+            BlueOff = zeros(1,62500);
+            BlueZero = zeros(1,62500);
+            
             axes(handles.axes1); %do these axis commands need to be called everytime?
             handles.image=image;
             axis off;
             lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjCalibration(e,handles));
             naneye1.StartCapture();
+            disp("Calibrating...place a white sheet of paper under camera");
+            disp("Hit End Calibration after a couple seconds");
             choice=set(handles.calibratebutton,'string','End Calibration');
             keeprunning = false;
          
         case 'End Calibration'
-            disp("Calibration finished"); %I could put this at the actual end?
             naneye1.StopCapture();
             delete(lh2);
             writememory(FPGA,16384,0);
-            CAL = double(zeros(187500,3));
-            CALinv = double(zeros(187500,3));
+            CAL = zeros(187500,3);
+            CALinv = zeros(187500,3);
             
             for n=1:62500
                 CAL(3*n-2:3*n,:)=[RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)];
-                CALinv(3*n-2:3*n,:)=inv([RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)]);
                 detCAL(3*n-2:3*n,:) = det(CAL(3*n-2:3*n,:));
                 if detCAL(3*n-2:3*n,:) == 0
-                    CALinv(3*n-2:3*n,:) = double(zeros(3,3));
+                    CALinv(3*n-2:3*n,:) = zeros(3,3);
                 else
+                    CALinv(3*n-2:3*n,:)=inv([RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)]);
                 end
             end
             
@@ -622,6 +634,8 @@ while keeprunning
 %             save('BlueOff.mat','BlueOffimg');
 %             save('BlueZero.mat','BlueZeroimg');
 
+            disp("Calibration finished");
+            disp("If calibration images do not match expected, repeat calibration");
             choice=set(handles.calibratebutton,'string','Calibrate');
             keeprunning = false;
             
