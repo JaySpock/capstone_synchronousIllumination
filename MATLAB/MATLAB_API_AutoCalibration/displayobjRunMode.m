@@ -93,11 +93,11 @@ if (size(different,1) > 58500)
     Blue = sum(ABC.*caliBlue,2);
         b = scalered*reshape(Blue(), [w,h]); %actually red
 
-    if frameOrder == 1
+    if frameOrder == 3
         imgh = cat(3, r,g,b);
     elseif frameOrder == 2
         imgh = cat(3, g,b,r);
-    elseif frameOrder == 3
+    elseif frameOrder == 1
         imgh = cat(3, b,r,g);
     end
 

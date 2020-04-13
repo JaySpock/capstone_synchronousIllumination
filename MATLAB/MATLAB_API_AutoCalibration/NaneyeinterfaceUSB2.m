@@ -228,11 +228,11 @@ while keep_running
             figure;
             tiledlayout(1,3);
             nexttile
-            image(Aimg); title("A");
+            image(flipud(Aimg.')); title("A");
             nexttile
-            image(Bimg); title("B");
+            image(flipud(Bimg.')); title("B");
             nexttile
-            image(Cimg); title("C");
+            image(flipud(Cimg.')); title("C");
             
 %             save('A_NormalRun.mat','Aimg');
 %             save('B_NormalRun.mat','Bimg');
