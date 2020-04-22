@@ -46,10 +46,9 @@ function NaneyeinterfaceUSB2_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for NaneyeinterfaceUSB2
 global lock naneye1 w h colorlist BW FPGA
 
-clear global a; %clears the previous connection so a new updated Arduino connection can be established
-hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18.1\quartus\bin64\quartus.exe');
-FPGA = aximaster('Intel');
-writememory(FPGA,16384,0);
+hdlsetuptoolpath('ToolName','Altera Quartus II','ToolPath','C:\intelFPGA_lite\18.1\quartus\bin64\quartus.exe'); % Adds the required tools to the path for communication between MATLAB and the Cyclone 10 LP
+FPGA = aximaster('Intel'); % Creating the object for the Cyclone 10 LP
+writememory(FPGA,16384,0); % Writes a 0 to the memory address 16384, ensures all LEDs are off to start
 
 % The 'lock' variable is used to control if a histogram is to be displayed.
 % 'lock = -1' ensures that no histogram was requested and 'lock = 3' enables the displaying of the histogram. 
@@ -80,8 +79,8 @@ disp('....Application Starting')
 % values. Optionally not all the default registers can be edited on this
 % interface.
 
-Awaiba.Drivers.Grabbers.Location.Paths.SetFpgaFilesDirectory('')
-Awaiba.Drivers.Grabbers.Location.Paths.SetBinFile('nanousb2_fpga_v07.bin')
+Awaiba.Drivers.Grabbers.Location.Paths.SetFpgaFilesDirectory('') % Sets the path where the .dll files are located
+Awaiba.Drivers.Grabbers.Location.Paths.SetBinFile('nanousb2_fpga_v07.bin') % Each USB interface has a different .bin file which is chosen here
 
 naneye1 = Awaiba.Drivers.Grabbers.NanEye2DNanoUSB2Provider; w=250; h=250;
 
@@ -100,7 +99,7 @@ end
 naneye1.AutomaticExpControl().ShowROI = 0;
 naneye1.AutomaticExpControl().Enabled = 0;
 colorlist = Awaiba.FrameProcessing.ProcessingWrapper.Instance(0);
-colorlist.colorReconstruction.Apply=1;
+colorlist.colorReconstruction.Apply=1; % NOTE that this color reconstruction is from the manufacturer and is for the histogram with a Bayer mask camera, not our image merging method
 
 BW=0;
 
@@ -179,7 +178,7 @@ function startbuttom_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
-global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg nextFrame count oldput previmg scalered scalegreen scaleblue
+global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg oldput previmg scalered scalegreen scaleblue
 
 keep_running=true;
 choice=get(handles.startbuttom,'string');
@@ -190,42 +189,40 @@ while keep_running
         
        case 'Prepare to Start'
             disp("Setting up variables, hit Confirm Start when ready");
-            A = ones(1,62500);
+            A = ones(1,62500); % Initializing the frames to different values so no errors are thrown
             B = 2*A;
             C = 3*B;
             r = reshape(A(), [250,250]);
             g = reshape(B(), [250,250]);
             b = reshape(C(), [250,250]);
-            nextFrame = 'One';
             previmg = double(zeros(250,250));
-            count = 'A';
             scalered = 1;
             scalegreen = 1;
             scaleblue = 1;
             frameOrder = 1;
             record = 2;
-            v = VideoWriter('NewColorVideoTest.avi','Uncompressed AVI');
-            writememory(FPGA,16384,2);
+            v = VideoWriter('NewColorVideoTest.avi','Uncompressed AVI'); % sets up the object to save video, this is where to change the file format
+            writememory(FPGA,16384,2); % Begins the normal run mode LED illumination
             disp("Ready");
             choice=set(handles.startbuttom,'string','Confirm Start');
             keep_running = false;
             
         case 'Confirm Start'
-            oldput = readmemory(FPGA,16400,1);
-            axes(handles.axes1);
+            oldput = readmemory(FPGA,16400,1); % Used to ensure that the program waits for a new value from the FPGA
+            axes(handles.axes1); % these initialize the display axis
             handles.image=image;
             axis off;
-            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjRunMode(e,handles));
+            lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjRunMode(e,handles)); % Adds the displayobjRunMode as a function that will run every time a new frame is processed by the Awaiba box
             naneye1.StartCapture();            
             choice=set(handles.startbuttom,'string','Stop');
             keep_running = false;
         
         case 'Stop'
             naneye1.StopCapture();
-            delete(lh1);
-            writememory(FPGA,16384,0);
+            delete(lh1); % Deletes the listener function because the calibration process uses a different one
+            writememory(FPGA,16384,0); % Turns all LEDs off
             
-            figure;
+            figure; % This figure shows the last three frames read in, useful for testing
             tiledlayout(1,3);
             nexttile
             image(flipud(Aimg.')); title("A");
@@ -234,7 +231,8 @@ while keep_running
             nexttile
             image(flipud(Cimg.')); title("C");
             
-%             save('A_NormalRun.mat','Aimg');
+%             save('A_NormalRun.mat','Aimg'); % This can be used to save
+%             the images for further use and/or calculation
 %             save('B_NormalRun.mat','Bimg');
 %             save('C_NormalRun.mat','Cimg');
 
@@ -548,7 +546,7 @@ function calibratebutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-global naneye1 keeprunning previousin previousimg FPGA ZeroCal caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
+global naneye1 keeprunning previousin previousimg FPGA caliRed caliGreen caliBlue RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero lh2 RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
 
 keeprunning=true;
 choice=get(handles.calibratebutton,'string');
@@ -558,10 +556,10 @@ while keeprunning
     switch choice
         
        case 'Calibrate'
-            writememory(FPGA,16384,1);
-            previousin = readmemory(FPGA,16400,1);
-            previousimg = zeros(250,250);
+            writememory(FPGA,16384,1); % Starts the calibration LED sequence
+            previousin = readmemory(FPGA,16400,1); % Like the normal run mode, ensures the FPGA signal is changing before reading
             
+            previousimg = zeros(250,250); % Initializing matrices
             RedOn = zeros(1,62500);
             RedOff = zeros(1,62500);
             RedZero = zeros(1,62500);
@@ -572,10 +570,10 @@ while keeprunning
             BlueOff = zeros(1,62500);
             BlueZero = zeros(1,62500);
             
-            axes(handles.axes1); %do these axis commands need to be called everytime?
+            axes(handles.axes1);
             handles.image=image;
             axis off;
-            lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjCalibration(e,handles));
+            lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjCalibration(e,handles)); % This is the specific function used for calibration
             naneye1.StartCapture();
             disp("Calibrating...place a white sheet of paper under camera");
             disp("Hit End Calibration after a couple seconds");
@@ -585,10 +583,15 @@ while keeprunning
         case 'End Calibration'
             naneye1.StopCapture();
             delete(lh2);
-            writememory(FPGA,16384,0);
-            CAL = zeros(187500,3);
+            writememory(FPGA,16384,0); % Turns all LEDs off
+            CAL = zeros(187500,3); % Initializes matrices
             CALinv = zeros(187500,3);
             
+            % This loop goes through each pixel and picks out the
+            % respective values from each calibration matrix. It also
+            % filters out the matrices which cannot be inverted and sets
+            % them to zero (these are all the set pixels on the edge
+            % anyways)
             for n=1:62500
                 CAL(3*n-2:3*n,:)=[RedOn(n) GreenZero(n) BlueOff(n); RedOff(n) GreenOn(n) BlueZero(n); RedZero(n) GreenOff(n) BlueOn(n)];
                 detCAL(3*n-2:3*n,:) = det(CAL(3*n-2:3*n,:));
@@ -599,11 +602,13 @@ while keeprunning
                 end
             end
             
+            % Reshaping the calibration matrices again to make the normal
+            % run mode math quicker
             caliRed   = CALinv(1:3:end,:);
             caliGreen = CALinv(2:3:end,:);
             caliBlue  = CALinv(3:3:end,:);
             
-            figure;
+            figure; % This figure shows all the captured calibration matrices so the user can make sure everything worked as expected
             tiledlayout(3,3);
             nexttile
             image(RedOnimg); title("Red On");
@@ -654,8 +659,10 @@ global frameOrder
 
 choice=get(handles.switchorderbutton,'string');
 
+% Works while the video is running, simply changes the frameOrder variable
+% which is used in the normal run mode function
 switch choice
-    case 'Switch Order (1st Time)' %I will need to be able to go right back into the normal run mode after this is changed, maybe put it somewhere else? not triggered off a button?
+    case 'Switch Order (1st Time)'
         frameOrder = 2;
         choice=set(handles.switchorderbutton,'string','Switch Order (2nd Time)');
     case 'Switch Order (2nd Time)'
@@ -678,12 +685,12 @@ choice=get(handles.savevideobutton,'string');
 
 switch choice
     case 'Start Record'
-        open(v);
+        open(v); % Opens the file we set earlier
         record = 1;
         choice=set(handles.savevideobutton,'string','Stop Record');
     case 'Stop Record'
         record = 2;
-        close(v);
+        close(v); % Closes same file
         choice=set(handles.savevideobutton,'string','Start Record');
 end
 
@@ -765,6 +772,7 @@ function colorscaleresetbutton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global scalered scalegreen scaleblue
 
+% This resets each color scalar to one
 scalered = 1;
 set(handles.redslider, 'Value', 1);
 scalegreen = 1;
