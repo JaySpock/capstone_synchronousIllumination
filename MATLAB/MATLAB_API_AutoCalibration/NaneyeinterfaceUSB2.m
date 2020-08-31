@@ -20,7 +20,7 @@ function varargout = NaneyeinterfaceUSB2(varargin)
 
 % Edit the above text to modify the response to help NaneyeinterfaceUSB2
 
-% Last Modified by GUIDE v2.5 08-Apr-2020 09:54:16
+% Last Modified by GUIDE v2.5 10-Jun-2020 10:01:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -173,21 +173,21 @@ function scriptlist_Callback(hObject, eventdata, handles)
      set(handles.togglebutton3,'Enable','On');
  end
 
-% --- Executes on button press in startbuttom.
-function startbuttom_Callback(hObject, eventdata, handles)
+% --- Executes on button press in StartSynchronous_button.
+function StartSynchronous_button_Callback(hObject, eventdata, handles)
 % The start button starts the displaying of what the sensor is capturing,
 % keeping that capture until the Stop is pressed.
 
 global naneye1 keep_running A B C FPGA frameOrder record v r g b lh1 Aimg Bimg Cimg oldput previmg scalered scalegreen scaleblue
 
 keep_running=true;
-choice=get(handles.startbuttom,'string');
+choice=get(handles.StartSynchronous_button,'string');
 
 while keep_running
     
     switch choice
         
-       case 'Prepare to Start'
+       case 'Prepare for Synchronous'
             disp("Setting up variables, hit Confirm Start when ready");
             A = ones(1,62500); % Initializing the frames to different values so no errors are thrown
             B = 2*A;
@@ -204,17 +204,18 @@ while keep_running
             v = VideoWriter('NewColorVideoTest.avi','Uncompressed AVI'); % sets up the object to save video, this is where to change the file format
             writememory(FPGA,16384,2); % Begins the normal run mode LED illumination
             disp("Ready");
-            choice=set(handles.startbuttom,'string','Confirm Start');
+            choice=set(handles.StartSynchronous_button,'string','Confirm Start');
             keep_running = false;
             
         case 'Confirm Start'
             oldput = readmemory(FPGA,16400,1); % Used to ensure that the program waits for a new value from the FPGA
             axes(handles.axes1); % these initialize the display axis
+            colormap gray
             handles.image=image;
             axis off;
             lh1 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjRunMode(e,handles)); % Adds the displayobjRunMode as a function that will run every time a new frame is processed by the Awaiba box
             naneye1.StartCapture();            
-            choice=set(handles.startbuttom,'string','Stop');
+            choice=set(handles.StartSynchronous_button,'string','Stop');
             keep_running = false;
         
         case 'Stop'
@@ -236,7 +237,7 @@ while keep_running
 %             save('B_NormalRun.mat','Bimg');
 %             save('C_NormalRun.mat','Cimg');
 
-            choice=set(handles.startbuttom,'string','Prepare to Start');
+            choice=set(handles.StartSynchronous_button,'string','Prepare to Start');
             keep_running = false;
     end
     
@@ -245,15 +246,93 @@ end
 guidata(hObject,handles);
 
 
+% --- Executes on button press in StartBayer_button.
+function StartBayer_button_Callback(hObject, eventdata, handles)
+% hObject    handle to StartBayer_button (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global naneye1 keep_running FPGA lh3
+
+keep_running=true;
+choice=get(handles.StartBayer_button,'string');
+
+while keep_running
+    
+    switch choice
+        
+       case 'Start Bayer'
+            writememory(FPGA,16384,3); % Tells the FPGA to turn all LEDs on
+            axes(handles.axes1); % these initialize the display axis
+            handles.image=image;
+            axis off;
+            lh3 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjBayer(e,handles)); % Adds the displayobjBayer as a function that will run every time a new frame is processed by the Awaiba box
+            naneye1.StartCapture();            
+            choice=set(handles.StartBayer_button,'string','Stop');
+            keep_running = false;
+        
+        case 'Stop'
+            naneye1.StopCapture();
+            delete(lh3); % Deletes the listener function to prepare for a different mode to be used
+            writememory(FPGA,16384,0); % Turns all LEDs off
+            choice=set(handles.StartBayer_button,'string','Start Bayer');
+            keep_running = false;
+    end
+    
+end
+
+guidata(hObject,handles);
+
+
+% --- Executes on button press in StartMonochrome_button.
+function StartMonochrome_button_Callback(hObject, eventdata, handles)
+% hObject    handle to StartMonochrome_button (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global naneye1 keep_running FPGA lh4
+
+keep_running=true;
+choice=get(handles.StartMonochrome_button,'string');
+
+while keep_running
+    
+    switch choice
+        
+       case 'Start Monochrome'
+            writememory(FPGA,16384,3); % Tells the FPGA to turn all LEDs on
+            axes(handles.axes1); % these initialize the display axis
+            colormap gray
+            handles.image=image;
+            axis off;
+            lh4 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjMonochrome(e,handles)); % Adds the displayobjBayer as a function that will run every time a new frame is processed by the Awaiba box
+            naneye1.StartCapture();            
+            choice=set(handles.StartMonochrome_button,'string','Stop');
+            keep_running = false;
+        
+        case 'Stop'
+            naneye1.StopCapture();
+            delete(lh4); % Deletes the listener function to prepare for a different mode to be used
+            writememory(FPGA,16384,0); % Turns all LEDs off
+            choice=set(handles.StartMonochrome_button,'string','Start Monochrome');
+            keep_running = false;
+    end
+    
+end
+
+guidata(hObject,handles);
+
 % --- Executes on button press in saveimage, to save the image captured by
 % the sensor.
 function saveimage_Callback(hObject, eventdata, handles)
 
+global fullimage
 
+save('NewScreenshot.mat','fullimage');
 
-figure;
+figure('units','pixels','position',[1 1 250 250]);
 exported_fig=gca;
 copyobj(allchild(handles.axes1), exported_fig);
+set(gca,'Units','pixels');
+set(gca, 'Position',[1 1 250 250]);
 axis(exported_fig,'tight','square');
 axis off;
 
@@ -474,7 +553,7 @@ function pushbutton8_Callback(hObject, eventdata, handles)
 % initializing the interface.
 global naneye1 w h
 naneye1 = Awaiba.Drivers.Grabbers.NanEye2DNanoUSB2Provider; w=250; h=250;
-set(handles.startbuttom,'string','Start');
+set(handles.StartSynchronous_button,'string','Start');
 SensorReg=load('NaneyeRegDataUSB2.mat');
 set(handles.registertable,'data',SensorReg.RegData);
 
@@ -571,6 +650,7 @@ while keeprunning
             BlueZero = zeros(1,62500);
             
             axes(handles.axes1);
+            colormap gray;
             handles.image=image;
             axis off;
             lh2 = addlistener(naneye1,'ImageProcessed', @(o,e)displayobjCalibration(e,handles)); % This is the specific function used for calibration
@@ -604,6 +684,9 @@ while keeprunning
             
             % Reshaping the calibration matrices again to make the normal
             % run mode math quicker
+            %caliRed   = 0.9*CALinv(1:3:end,:);
+            %caliGreen = 1.11*CALinv(2:3:end,:);
+            %caliBlue  = 1.118*CALinv(3:3:end,:);
             caliRed   = CALinv(1:3:end,:);
             caliGreen = CALinv(2:3:end,:);
             caliBlue  = CALinv(3:3:end,:);
@@ -717,6 +800,7 @@ function redslider_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+set(hObject,'Value',1);
 
 
 % --- Executes on slider movement.
@@ -740,7 +824,7 @@ function greenslider_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
+set(hObject,'Value',1);
 
 % --- Executes on slider movement.
 function blueslider_Callback(hObject, eventdata, handles)
@@ -763,7 +847,7 @@ function blueslider_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
+set(hObject,'Value',1);
 
 % --- Executes on button press in colorscaleresetbutton.
 function colorscaleresetbutton_Callback(hObject, eventdata, handles)

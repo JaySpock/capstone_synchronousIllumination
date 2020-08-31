@@ -74,11 +74,11 @@ set_location_assignment PIN_L14 -to LED[0]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED[0]
 set_location_assignment PIN_P1 -to "DATA(n)"
 set_instance_assignment -name IO_STANDARD LVDS -to "DATA(n)"
+set_location_assignment PIN_L16 -to LED_OUT[0]
+set_location_assignment PIN_R16 -to LED_OUT[1]
+set_location_assignment PIN_K16 -to LED_OUT[2]
 set_global_assignment -name QSYS_FILE nios_setup.qsys
 set_global_assignment -name QIP_FILE nios_setup/synthesis/nios_setup.qip
 set_global_assignment -name SDC_FILE top.sdc
 set_global_assignment -name VHDL_FILE hello_world.vhd
-set_location_assignment PIN_L16 -to LED_OUT[0]
-set_location_assignment PIN_R16 -to LED_OUT[1]
-set_location_assignment PIN_K16 -to LED_OUT[2]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

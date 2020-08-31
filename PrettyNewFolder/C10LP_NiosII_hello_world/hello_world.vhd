@@ -153,7 +153,7 @@ architecture hello_world_arch of hello_world is
 									
 							end case;
 							
-						elsif (Button_comp = "010") then		-- '2' input from computer starts calibration
+						elsif (Button_comp = "010") then		-- '2' input from computer starts synchronous run mode
 							
 							case LED_output is
 									when "110" =>					-- if red was on then turn on green
@@ -172,6 +172,10 @@ architecture hello_world_arch of hello_world is
 										LED_output <= "111";		-- if LEDs are set to anything else then turn off all LEDs
 										DATA_OUT <= "01101";		-- '13' state
 							end case;
+							
+						elsif (Button_comp = "011") then    -- '3' input from computer turns all LEDs on to create white light
+							LED_output <= "000";             -- All LEDs on
+							
 						else								-- if computer sends a number outside of the 3 modes then set all LEDs off
 							LED_output <= "111";
 							DATA_OUT <= "01101";		-- '13' state

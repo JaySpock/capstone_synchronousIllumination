@@ -2,10 +2,10 @@ function displayobjCalibration(inbytes,handles)
 % Function that captures images while the LEDs are illuminating with the
 % calibration sequence on white paper. Reads from the FPGA to determine
 % which frames are which.
-global fullimage lock FPGA previousin previousimg ZeroCal RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
+global fullimage w h lock FPGA previousin previousimg ZeroCal RedOn RedOff RedZero GreenOn GreenOff GreenZero BlueOn BlueOff BlueZero RedOnimg RedOffimg RedZeroimg GreenOnimg GreenOffimg GreenZeroimg BlueOnimg BlueOffimg BlueZeroimg
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte); % Saves the frame that was already read in as hbytes. This can be read in as processed data as well (search through the .dll files with dotPeek)
-img = reshape(hbytes(), [250,250]).'; % Images being read in are 1x62500 so they must be reshaped into squares before being displayed
+img = reshape(hbytes(), [w,h]).'; % Images being read in are 1x62500 so they must be reshaped into squares before being displayed
 different = find(img ~= previousimg); % This finds how many pixels have changed in value from the last image read in
 
 if (size(different,1) > 58500) % If the difference between the frames is greater than 58500 we are confident that it is indeed a different frame

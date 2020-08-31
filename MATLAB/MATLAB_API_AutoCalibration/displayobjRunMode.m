@@ -5,7 +5,7 @@ function displayobjRunMode(inbytes,handles)
 global fullimage lock w h FPGA caliRed caliGreen caliBlue A B C frameOrder record v r g b Aimg Bimg Cimg input oldput previmg scalered scalegreen scaleblue
 
 hbytes = double(inbytes.GetImageData.GetRawPixels1Byte); % Reads in the captured image where each pixel is one byte representing the raw value read in by the camera
-img = reshape(hbytes(), [250,250]).';
+img = reshape(hbytes(), [w,h]).';
 different = find(img ~= previmg);
 
 if (size(different,1) > 58500) % Same process as the calibration function, ensuring the image is different from the previous to reduce repeats
@@ -23,13 +23,16 @@ if (size(different,1) > 58500) % Same process as the calibration function, ensur
         end       
     end  
 
-% Some other options we tried instead of the if statement at the top of this function    
+% Some other options we tried instead of the if statement at the top of this function
+
 %if (isequal(img,previmg)) % The images are never exactly equal since the
 %add listener function waits for a new image to be processed by the camera,
 %however, even when the images have many different pixels they have barely
 %changed and still represent the same stage in the LED illumination
 %process. We are not sure what causes this to happen.
+
 %if (abs(img-previmg) <= ( 0.08*max(abs(img),abs(previmg)) + eps))
+
 %if (mean(img~=previmg) < 0.25)
 %     pause(0.001);
 % elseif (size(different,1) >= 10000)
